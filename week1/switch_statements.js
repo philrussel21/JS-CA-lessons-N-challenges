@@ -20,17 +20,13 @@ function whatDoingToday(day) {
   // Switch way
   switch (day) {
     case "Monday":
-      return ("Learning at Coder Academy");
     case 'Tuesday':
-      return ("Learning at Coder Academy");
     case 'Wednesday':
       return ("Learning at Coder Academy");
     case 'Thursday':
-      return ("Reviewing lessons from the week");
     case 'Friday':
       return ("Reviewing lessons from the week");
     case 'Saturday':
-      return ("It is the weekend!");
     case 'Sunday':
       return ("It is the weekend!");
     default:
@@ -41,3 +37,33 @@ function whatDoingToday(day) {
 // What day is it today?
 let day = 'Wednesday'
 console.log(whatDoingToday(day))
+
+// function whatDoingToday(day) {
+//   // Switch with dynamic date starts here
+//   const days = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday"
+
+//   // Switch way
+//   // days.split(',')[day] convertes the index provided (day) to an actual string of the day
+//   switch (days.split(',')[day]) {
+//     case "Monday":
+//       return ("Learning at Coder Academy");
+//     case 'Tuesday':
+//       return ("Learning at Coder Academy");
+//     case 'Wednesday':
+//       return ("Learning at Coder Academy");
+//     case 'Thursday':
+//       return ("Reviewing lessons from the week");
+//     case 'Friday':
+//       return ("Reviewing lessons from the week");
+//     case 'Saturday':
+//       return ("It is the weekend!");
+//     case 'Sunday':
+//       return ("It is the weekend!");
+//     default:
+//       return ("That is not a valid day")
+//   }
+// }
+// // What day is it today?
+// // new Date().getDay() returns a number from 0-6 representing the day of the week
+// let day = new Date().getDay()
+// console.log(whatDoingToday(day))
