@@ -3,11 +3,6 @@
 	"version": "1.0.0",
 	"description": "- Read fighters.json into your JS file using FS     - Parse the contents of the variable",
 	"main": "index.js",
-	"jest": {
-		"transformIgnorePatterns": [
-			"[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$"
-		]
-	},
 	"scripts": {
 		"test": "jest"
 	},
