@@ -1,0 +1,34 @@
+{
+    "fighters": [
+        {
+            "first_name":"Drupada",
+            "last_name":"Fearsnarl",
+            "id":1,
+            "powerLevel":54
+            },
+            {
+            "first_name":"Siv",
+            "last_name":"Delaney",
+            "id":2,
+            "powerLevel":36
+            },
+            {
+            "first_name":"Bhumi",
+            "last_name":"Moondream",
+            "id":3,
+            "powerLevel":77
+            },
+            {
+            "first_name":"Djehuti",
+            "last_name":"Busta D",
+            "id":4,
+            "powerLevel":101
+            },
+            {
+            "first_name":"Dido",
+            "last_name":"Breckinridge",
+            "id":5,
+            "powerLevel":3
+            }
+    ]    
+}
