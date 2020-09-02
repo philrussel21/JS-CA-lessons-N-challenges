@@ -1,0 +1,19 @@
+{
+	"name": "weather-class",
+	"version": "1.0.0",
+	"description": "A JSON string has been provided for you in the data.js file:  you can access it in your code with the dataString Variable.",
+	"main": "data.js",
+	"scripts": {
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git.edstem.org:challenge/19361/weather-class"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"jest": "^26.4.2"
+	}
+}
