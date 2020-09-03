@@ -50,21 +50,57 @@ const btn = document.querySelector('button');
 
 
 // function that returns a Promise - usually done like this
-const introPromise = () => {
+// const introPromise = () => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const randNum = Math.random()
+//       if (randNum > 0.5) {
+//         resolve();
+//       }
+//       else {
+//         reject();
+//       }
+//     }, 5000)
+//   })
+// }
+
+// then and catch can be chained together and only one of them would run depending on the returned status of the Promise
+// introPromise()
+//   .then(() => console.log('Resolved :)'))
+//   .catch(() => console.log('Rejected :('));
+
+
+// Resolving or Rejecting with Values
+
+const fakeRequest = (url) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const randNum = Math.random()
-      if (randNum > 0.5) {
-        resolve();
+      const pages = {
+        '/users': [
+          {
+            id: 1,
+            username: 'Frodo'
+          },
+          {
+            id: 5,
+            username: 'Legolas'
+          }
+        ],
+        '/about': 'This is the about page.'
+      }
+      const data = pages[url]
+      if (data) {
+        // Object rest or spread: declared variable can be used as a property-value pair
+        // data would then be data: pages[url]
+        resolve({ status: 200, data })
       }
       else {
-        reject();
+        reject({ status: 404 })
       }
-    }, 5000)
+    }, 3000)
   })
 }
 
-// then and catch can be chained together and only one of them would run depending on the returned status of the Promise
-introPromise()
-  .then(() => console.log('Resolved :)'))
-  .catch(() => console.log('Rejected :('));
+fakeRequest('/users')
+  .then((res) => console.log('Resolved :)', res))
+  .catch((err) => console.log('Rejected :(', err.status))
