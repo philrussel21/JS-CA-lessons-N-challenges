@@ -107,62 +107,167 @@ const btn = document.querySelector('button');
 
 
 // Chaining Promises
-const fakeRequest = (url) => {
+// const fakeRequest = (url) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const pages = {
+//         '/users': [
+//           { id: 1, username: 'Bilbo' },
+//           { id: 5, username: 'Esmerelda' }
+//         ],
+//         '/users/1': {
+//           id: 1,
+//           username: 'Bilbo',
+//           upvotes: 360,
+//           city: 'Lisbon',
+//           topPostId: 454321
+//         },
+//         '/users/5': {
+//           id: 5,
+//           username: 'Esmerelda',
+//           upvotes: 571,
+//           city: 'Honolulu'
+//         },
+//         '/posts/454321': {
+//           id: 454321,
+//           title:
+//             'Ladies & Gentlemen, may I introduce my pet pig, Hamlet'
+//         },
+//         '/about': 'This is the about page!'
+//       };
+//       const data = pages[url];
+//       if (data) {
+//         resolve({ status: 200, data }); //resolve with a value!
+//       }
+//       else {
+//         reject({ status: 404 }); //reject with a value!
+//       }
+//     }, 1000);
+//   });
+// };
+
+// fakeRequest('/users')
+//   .then((res) => {
+//     const userOne = res.data[0].id;
+//     console.log("Got userID: ", userOne)
+//     // returns the promise with the updated argument for the next .then method
+//     return fakeRequest(`/users/${userOne}`)
+//   })
+//   .then((res) => { // dependent on the previous .then function
+//     const userPostId = res.data.topPostId
+//     console.log("Got userPostId: ", userPostId)
+//     // returns the promise with the updated argument for the next .then method
+//     return fakeRequest(`/posts/${userPostId}`)
+//   })
+//   .then((res) => { // dependent on the previous .then function
+//     const postTitle = res.data.title
+//     console.log(postTitle)
+//   })
+//   .catch((err) => {
+//     console.log(err.status) // catches every reject that may occur on each promises
+//   })
+
+// Refactoring the first example with callback hell
+const moveX = (element, amount, delay) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const pages = {
-        '/users': [
-          { id: 1, username: 'Bilbo' },
-          { id: 5, username: 'Esmerelda' }
-        ],
-        '/users/1': {
-          id: 1,
-          username: 'Bilbo',
-          upvotes: 360,
-          city: 'Lisbon',
-          topPostId: 454321
-        },
-        '/users/5': {
-          id: 5,
-          username: 'Esmerelda',
-          upvotes: 571,
-          city: 'Honolulu'
-        },
-        '/posts/454321': {
-          id: 454321,
-          title:
-            'Ladies & Gentlemen, may I introduce my pet pig, Hamlet'
-        },
-        '/about': 'This is the about page!'
-      };
-      const data = pages[url];
-      if (data) {
-        resolve({ status: 200, data }); //resolve with a value!
+      const bodyBoundary = document.body.clientWidth;
+      const elRight = element.getBoundingClientRect().right;
+      const currLeft = element.getBoundingClientRect().left;
+      if (elRight + amount > bodyBoundary) {
+        reject();
       }
       else {
-        reject({ status: 404 }); //reject with a value!
+        const currAmount = currLeft + amount
+        element.style.transform = `translateX(${currAmount}px)`;
+        resolve({ status: 200 });
       }
-    }, 1000);
-  });
+    }, delay);
+  })
 };
 
-fakeRequest('/users')
+moveX(btn, 300, 1000)
   .then((res) => {
-    const userOne = res.data[0].id;
-    console.log("Got userID: ", userOne)
-    // returns the promise with the updated argument for the next .then method
-    return fakeRequest(`/users/${userOne}`)
+    console.log(res.status)
+    return moveX(btn, 300, 1000)
   })
-  .then((res) => { // dependent on the previous .then function
-    const userPostId = res.data.topPostId
-    console.log("Got userPostId: ", userPostId)
-    // returns the promise with the updated argument for the next .then method
-    return fakeRequest(`/posts/${userPostId}`)
+  .then((res) => {
+    console.log(res.status)
+    return moveX(btn, 300, 1000)
   })
-  .then((res) => { // dependent on the previous .then function
-    const postTitle = res.data.title
-    console.log(postTitle)
+  .then((res) => {
+    console.log(res.status)
+    return moveX(btn, 300, 1000)
   })
-  .catch((err) => {
-    console.log(err.status) // catches every reject that may occur on each promises
+  .then((res) => {
+    console.log(res.status)
+    alert('You have a wide screen!')
   })
+  .catch(() => {
+    alert('CANNOT MOVE FURTHER!')
+  })
+
+
+
+// LOOK AT THIS UGLY MESS!
+// moveX(
+//   btn,
+//   300,
+//   1000,
+//   () => {
+//     //success callback
+//     moveX(
+//       btn,
+//       300,
+//       1000,
+//       () => {
+//         //success callback
+//         moveX(
+//           btn,
+//           300,
+//           1000,
+//           () => {
+//             //success callback
+//             moveX(
+//               btn,
+//               300,
+//               1000,
+//               () => {
+//                 //success callback
+//                 moveX(
+//                   btn,
+//                   300,
+//                   1000,
+//                   () => {
+//                     //success callback
+//                     alert('YOU HAVE A WIDE SCREEN!');
+//                   },
+//                   () => {
+//                     //failure callback
+//                     alert('CANNOT MOVE FURTHER!');
+//                   }
+//                 );
+//               },
+//               () => {
+//                 //failure callback
+//                 alert('CANNOT MOVE FURTHER!');
+//               }
+//             );
+//           },
+//           () => {
+//             //failure callback
+//             alert('CANNOT MOVE FURTHER!');
+//           }
+//         );
+//       },
+//       () => {
+//         //failure callback
+//         alert('CANNOT MOVE FURTHER!');
+//       }
+//     );
+//   },
+//   () => {
+//     //failure callback
+//     alert('CANNOT MOVE FURTHER!');
+//   }
+// );
