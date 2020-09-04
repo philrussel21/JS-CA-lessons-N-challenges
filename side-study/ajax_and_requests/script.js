@@ -39,23 +39,101 @@ Array.prototype.sample = function () {
 // FETCH API
 
 // returns a promise as a Response Object
-fetch('https://anapioficeandfire.com/api/characters2/583')
-  .then((response) => {
-    console.log(response);
-    if (response.ok) {
-      // .json() method reads the Response object and returns a promise
-      // console.log(response.json())
-      response.json().then((data) => {
-        const { name, aliases, allegiances } = data;
-        console.log(`My name is ${name}, also known as ${aliases.sample()}`)
-      })
-    }
-    else {
-      // console.log(`ERROR: ${response.status}`)
-      throw Error(`Status Code Error: ${response.status}`)
-    }
-  })
+// fetch('https://anapioficeandfire.com/api/characters2/583')
+//   .then((response) => {
+//     console.log(response);
+//     if (response.ok) {
+//       // .json() method reads the Response object and returns a promise
+//       // console.log(response.json())
+//       response.json().then((data) => {
+//         const { name, aliases, allegiances } = data;
+//         console.log(`My name is ${name}, also known as ${aliases.sample()}`)
+//       })
+//     }
+//     else {
+//       // console.log(`ERROR: ${response.status}`)
+//       throw Error(`Status Code Error: ${response.status}`)
+//     }
+//   })
+//   .catch((err) => {
+//     console.log('SOMETHING WENT WRONG')
+//     console.log(err)
+//   })
+
+// Chaining with Fetch
+// fetch('https://anapioficeandfire.com/api/characters/583')
+//   .then((response) => {
+//     // console.log(response);
+//     if (!response.ok) throw Error(`Status Code Error: ${response.status}`);
+//     // .json() method reads the Response object and returns a promise
+//     // console.log(response.json())
+//     // returns the read Response object as a promise that contains all the data
+//     return response.json();
+//   })
+//   .then((data) => {
+//     // retrieves the data that was passed from resolved of the previous promise
+//     const { name, aliases, allegiances } = data;
+//     console.log(`My name is ${name}, also known as ${aliases.sample()}`);
+//     const houseUrl = allegiances[0];
+//     // console.log(houseUrl)
+
+//     // calls a fetch on another url that would return a Response object
+//     return fetch(houseUrl);
+//   })
+//   .then((response) => {
+//     // incoming object is going to be a response promise object that needs to be converted
+//     // console.log(response);
+//     if (!response.ok) throw Error(`Status Code Error: ${response.status}`);
+//     // .json() method reads the Response object and returns a promise
+//     // console.log(response.json())
+//     // returns the read Response object as a promise that contains all the data if valid
+//     return response.json();
+//   })
+//   .then((data) => {
+//     // retrieves the data that was passed from resolved of the previous promise
+//     const { name, words } = data;
+//     console.log(`${words} of ${name}`)
+//   })
+//   .catch((err) => {
+//     console.log('SOMETHING WENT WRONG');
+//     console.log(err);
+//   })
+
+
+// More on Fetch Chaining - cleaning up with named callback functions
+const firstPage = 'https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10'
+const secondPage = 'https://www.anapioficeandfire.com/api/characters?page=2&pageSize=10'
+
+const checkStatusAndParse = (response) => {
+  // incoming object is going to be a response promise object that needs to be converted
+  // console.log(response);
+  if (!response.ok) throw Error(`Status Code Error: ${response.status}`);
+  // .json() method reads the Response object and returns a promise
+  // console.log(response.json())
+  // returns the read Response object as a promise that contains all the data
+  return response.json();
+}
+
+const printNames = (data) => {
+  // retrieves the data that was passed from resolved of the previous promise
+  for (let record of data) {
+    console.log(record.aliases[0] || record.name)
+  }
+  // Automaticall returns a resolved Promise to keep the .then moving
+  return Promise.resolve(secondPage);
+}
+
+const fetchMoreNames = (url) => {
+  return fetch(url)
+}
+
+fetch(firstPage)
+  .then(checkStatusAndParse)
+  .then(printNames)
+  .then(fetchMoreNames)
+  .then(checkStatusAndParse)
+  .then(printNames)
   .catch((err) => {
-    console.log('SOMETHING WENT WRONG')
-    console.log(err)
+    console.log('SOMETHING WENT WRONG');
+    console.log(err);
   })
