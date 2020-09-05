@@ -157,20 +157,53 @@ Array.prototype.sample = function () {
 
 // even though it seems like a normal function, since it has the async keyword,
 // this function returns a promise with the return value as its value property.
-async function greet() {
-  return 'HELLO!'
-}
+// async function greet() {
+//   return 'HELLO!'
+// }
 
-greet().then(res => {
-  console.log('PROMISE RESOLVED WITH: ', res)
-})
+// greet().then(res => {
+//   console.log('PROMISE RESOLVED WITH: ', res)
+// })
 
-async function isValid(age) {
-  try {
-    if (age < 21) throw new Error('Come back when you\'re older!')
-    return 'Here\'s your drink'
-  }
-  catch (err) {
-    console.log(err)
-  }
-}
+// async function isValid(age) {
+//   try {
+//     if (age < 21) throw new Error('Come back when you\'re older!')
+//     return 'Here\'s your drink'
+//   }
+//   catch (err) {
+//     console.log(err)
+//   }
+// }
+
+// Async with Await
+
+// async function getGOTChars() {
+//   const res = await axios.get('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10')
+//   console.log(res.data)
+// }
+
+// getGOTChars()
+
+// Async-Await with Error Handling to catch an error within a single async func
+
+// async function getGOTChars() {
+//   try {
+//     const res = await axios.get('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10')
+//     console.log(res.data)
+//   } catch (err) {
+//     console.log('ERROR CAUGHT: ', err)
+//   }
+// }
+
+// getGOTChars()
+
+// Async-Await with Error Handling to catch MULTIPLE Errors (like with .then)
+// async function getGOTChars() {
+//   const res = await axios.get('https://www.ana1pioficeandfire.com/api/characters?page=1&pageSize=10')
+//   console.log(res.data)
+// };
+
+// getGOTChars()
+//   .catch((err) => {
+//     console.log('ERROR CAUGHT: ', err)
+//   });
