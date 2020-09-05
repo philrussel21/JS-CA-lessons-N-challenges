@@ -229,19 +229,46 @@ Array.prototype.sample = function () {
 // Parallel Request - requests for the promises fires off almost at the same time
 // before awaiting for the value. RELATIVELY FASTER
 
+// async function getGOTChars() {
+//   // request gets sent almost at the same time.
+//   const req1 = axios.get('https://www.anapioficeandfire.com/api/characters/384')
+//   const req2 = axios.get('https://www.anapioficeandfire.com/api/characters/2')
+//   const req3 = axios.get('https://www.anapioficeandfire.com/api/characters/3')
+
+//   // response is awaited before moving on to the next line for their data to use.
+//   const char1 = await req1;
+//   const char2 = await req2;
+//   const char3 = await req3;
+
+//   // data is used
+//   console.log(char1.data, char2.data, char3.data)
+// }
+
+// getGOTChars();
+
+// Using Promise.all with Parallel Requests
 async function getGOTChars() {
   // request gets sent almost at the same time.
   const req1 = axios.get('https://www.anapioficeandfire.com/api/characters/384')
   const req2 = axios.get('https://www.anapioficeandfire.com/api/characters/2')
-  const req3 = axios.get('https://www.anapioficeandfire.com/api/characters/3')
+  const req3 = axios.get('https://www.anapioficeandfire.com/api/characters/385')
 
-  // response is awaited before moving on to the next line for their data to use.
-  const char1 = await req1;
-  const char2 = await req2;
-  const char3 = await req3;
+  // Promise.all encapsulates all promises to an array and returns them a Promise Object
+  // once resolved or rejectd. With the use of await keyword, JS will wait for it 
+  // to finish before moving onto the next line of code.
+  const results = await Promise.all([req1, req2, req3])
 
   // data is used
-  console.log(char1.data, char2.data, char3.data)
+  console.log(results)
+  printNameNHouse(results)
 }
 
 getGOTChars();
+
+function printNameNHouse(arr) {
+  for (let record of arr) {
+    const data = record.data
+    const { name, aliases } = data
+    console.log(`The name is ${name}, also known as ${aliases.sample() || 'an extra character'}`)
+  }
+}
