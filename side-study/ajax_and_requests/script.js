@@ -207,3 +207,41 @@ Array.prototype.sample = function () {
 //   .catch((err) => {
 //     console.log('ERROR CAUGHT: ', err)
 //   });
+
+
+// Parallel vs. Sequential Requests
+
+// Sequantial Way - recommended when one query is reliant on the previous query.
+// in the example below, JS waits for the promise to resolve (char1) before
+// making another request for char2 even though they are not co-dependent. In
+// this situation, it is recommended to use parellel requests.
+
+// async function getGOTChars() {
+//   const char1 = await axios.get('https://www.anapioficeandfire.com/api/characters/384')
+//   const char2 = await axios.get('https://www.anapioficeandfire.com/api/characters/2')
+//   const char3 = await axios.get('https://www.anapioficeandfire.com/api/characters/3')
+
+//   console.log(char1.data, char2.data, char3.data)
+// }
+
+// getGOTChars();
+
+// Parallel Request - requests for the promises fires off almost at the same time
+// before awaiting for the value. RELATIVELY FASTER
+
+async function getGOTChars() {
+  // request gets sent almost at the same time.
+  const req1 = axios.get('https://www.anapioficeandfire.com/api/characters/384')
+  const req2 = axios.get('https://www.anapioficeandfire.com/api/characters/2')
+  const req3 = axios.get('https://www.anapioficeandfire.com/api/characters/3')
+
+  // response is awaited before moving on to the next line for their data to use.
+  const char1 = await req1;
+  const char2 = await req2;
+  const char3 = await req3;
+
+  // data is used
+  console.log(char1.data, char2.data, char3.data)
+}
+
+getGOTChars();
