@@ -141,14 +141,36 @@ Array.prototype.sample = function () {
 // USING AXIOS
 // Does not need to parse the response anymore, this would straight up give you the 
 // Promise data right away.
-axios.get('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10')
-  .then((res) => {
-    const { data, headers } = res
-    console.log(data);
-    console.log(headers.link.split(','))
-  })
-  // Same with catch, no need to check the status or the ok properties, everything
-  // would be caught and an error would be thrown on catch.
-  .catch((err) => {
-    console.log('SOMETHING WENT WRONG!', err)
-  })
+// axios.get('https://www.anapioficeandfire.com/api/characters?page=1&pageSize=10')
+//   .then((res) => {
+//     const { data, headers } = res
+//     console.log(data);
+//     console.log(headers.link.split(','))
+//   })
+//   // Same with catch, no need to check the status or the ok properties, everything
+//   // would be caught and an error would be thrown on catch.
+//   .catch((err) => {
+//     console.log('SOMETHING WENT WRONG!', err)
+//   })
+
+// Async-Await Functions - syntactic sugar to working with Asynchronous code
+
+// even though it seems like a normal function, since it has the async keyword,
+// this function returns a promise with the return value as its value property.
+async function greet() {
+  return 'HELLO!'
+}
+
+greet().then(res => {
+  console.log('PROMISE RESOLVED WITH: ', res)
+})
+
+async function isValid(age) {
+  try {
+    if (age < 21) throw new Error('Come back when you\'re older!')
+    return 'Here\'s your drink'
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
