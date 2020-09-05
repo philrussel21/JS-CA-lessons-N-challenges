@@ -168,44 +168,44 @@ const btn = document.querySelector('button');
 //   })
 
 // Refactoring the first example with callback hell
-const moveX = (element, amount, delay) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const bodyBoundary = document.body.clientWidth;
-      const elRight = element.getBoundingClientRect().right;
-      const currLeft = element.getBoundingClientRect().left;
-      if (elRight + amount > bodyBoundary) {
-        reject();
-      }
-      else {
-        const currAmount = currLeft + amount
-        element.style.transform = `translateX(${currAmount}px)`;
-        resolve({ status: 200 });
-      }
-    }, delay);
-  })
-};
+// const moveX = (element, amount, delay) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const bodyBoundary = document.body.clientWidth;
+//       const elRight = element.getBoundingClientRect().right;
+//       const currLeft = element.getBoundingClientRect().left;
+//       if (elRight + amount > bodyBoundary) {
+//         reject();
+//       }
+//       else {
+//         const currAmount = currLeft + amount
+//         element.style.transform = `translateX(${currAmount}px)`;
+//         resolve({ status: 200 });
+//       }
+//     }, delay);
+//   })
+// };
 
-moveX(btn, 300, 1000)
-  .then((res) => {
-    console.log(res.status)
-    return moveX(btn, 300, 1000)
-  })
-  .then((res) => {
-    console.log(res.status)
-    return moveX(btn, 300, 1000)
-  })
-  .then((res) => {
-    console.log(res.status)
-    return moveX(btn, 300, 1000)
-  })
-  .then((res) => {
-    console.log(res.status)
-    alert('You have a wide screen!')
-  })
-  .catch(() => {
-    alert('CANNOT MOVE FURTHER!')
-  })
+// moveX(btn, 300, 1000)
+//   .then((res) => {
+//     console.log(res.status)
+//     return moveX(btn, 300, 1000)
+//   })
+//   .then((res) => {
+//     console.log(res.status)
+//     return moveX(btn, 300, 1000)
+//   })
+//   .then((res) => {
+//     console.log(res.status)
+//     return moveX(btn, 300, 1000)
+//   })
+//   .then((res) => {
+//     console.log(res.status)
+//     alert('You have a wide screen!')
+//   })
+//   .catch(() => {
+//     alert('CANNOT MOVE FURTHER!')
+//   })
 
 
 
@@ -271,3 +271,36 @@ moveX(btn, 300, 1000)
 //     alert('CANNOT MOVE FURTHER!');
 //   }
 // );
+
+// With Async-Await
+const moveX = (element, amount, delay) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const bodyBoundary = document.body.clientWidth;
+      const elRight = element.getBoundingClientRect().right;
+      const currLeft = element.getBoundingClientRect().left;
+      if (elRight + amount > bodyBoundary) {
+        reject('Not Enough Space to move!');
+      }
+      else {
+        const currAmount = currLeft + amount
+        element.style.transform = `translateX(${currAmount}px)`;
+        resolve({ status: 200 });
+      }
+    }, delay);
+  })
+};
+
+async function moveRight(el) {
+  await moveX(el, 300, 1000);
+  await moveX(el, 300, 1000);
+  await moveX(el, 300, 1000);
+  await moveX(el, 300, 1000);
+  await moveX(el, 300, 1000);
+  await moveX(el, 300, 1000);
+}
+
+moveRight(btn)
+  .catch((err) => {
+    console.log("SOMETHING WENT WRONG: ", err)
+  })
