@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous"
+		></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+
+	<body>
+		<button id="button">Get Jokes</button>
+		<button id="poke-btn">Get Pokemons</button>
+		<script>
+			// grab jokes
+			function compileJokes(num, callback, arr = []) {
+				let url = 'https://icanhazdadjoke.com/';
+				$.getJSON(url, (dadJoke) => {
+					arr.push(dadJoke.joke);
+					if (num === arr.length) {
+						return callback(arr);
+					}
+					return compileJokes(num, callback, arr);
+				});
+			}
+			function showData(data) {
+				for (let record of data) {
+					document.body.innerHTML += `<li>${record}</li>`;
+				}
+			}
+
+			// grabs a pokemon randomly and inserts to DOM
+			async function catchPokemons(num) {
+				const pokemon = await axios.get(
+					`https://pokeapi.co/api/v2/pokemon/${num}`
+				);
+				const pokeName = pokemon.data.name;
+				const pokeImage = pokemon.data.sprites.front_default;
+				document.body.innerHTML += `<h2>${pokeName}</h2>`;
+				document.body.innerHTML += `<img src='${pokeImage}'>`;
+			}
+
+			// Event Listeners
+			// grabs jokes
+			document.querySelector('#button').addEventListener('click', () => {
+				compileJokes(5, showData);
+			});
+
+			// grabs a pokemon randomly
+			const btn = document.querySelector('#poke-btn');
+			btn.addEventListener('click', () => {
+				for (let i = 0; i < 5; i++) {
+					const randNum = Math.floor(Math.random() * 200);
+					catchPokemons(randNum);
+				}
+			});
+		</script>
+	</body>
+</html>
