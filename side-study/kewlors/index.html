@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Kewlors</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		/>
+		<style>
+			.cont {
+				height: 100vh;
+			}
+			.position-relative {
+				/* z-index: -1; */
+			}
+			.position-absolute {
+				top: 0;
+				left: 0;
+				height: 100vh;
+			}
+		</style>
+	</head>
+	<body class="position-relative">
+		<main
+			class="position-absolute d-flex justify-content-center align-items-center w-100"
+		>
+			<form
+				action="#"
+				class="container-fluid w-75 jumbotron text-center d-flex flex-column"
+			>
+				<label for="theorySelect">Colour Theory</label>
+				<select name="theory" id="theorySelect">
+					<option value="an">Analogous</option>
+					<option value="com" selected>Complementary</option>
+				</select>
+
+				<h2>Starting Colour</h2>
+				<label for="hexColour">Hex Colour</label>
+				<input type="text" id="hexColour" readonly />
+				<label for="rgbColour">RGB Colour</label>
+				<input type="text" id="rgbColour" readonly />
+				<label for="hslColour">HSL Colour</label>
+				<input type="text" id="hslColour" readonly />
+				<input type="color" id="color" />
+
+				<h2>Results</h2>
+			</form>
+		</main>
+		<section class="cont w-100 d-flex">
+			<div class="w-100 h-100"></div>
+			<!-- <div class="w-100 h-100 bg-white"></div> -->
+
+			<!-- <div class="w-100 h-100 bg-secondary"></div>
+			<div class="w-100 h-100 bg-warning"></div> -->
+		</section>
+		<footer></footer>
+		<script src="index.js"></script>
+	</body>
+</html>
+<!-- https://www.canva.com/colors/color-wheel/ -->
+<!-- 2 Analogous Colors -->
+<!-- 1 Complementary -->
