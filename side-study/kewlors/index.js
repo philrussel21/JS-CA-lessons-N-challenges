@@ -6,15 +6,6 @@ const rgbColourIn = document.querySelector('#rgbColour')
 const hslColourIn = document.querySelector('#hslColour')
 
 
-class Color {
-  constructor(hex) {
-    this.hex = hex
-  }
-}
-
-
-
-
 col.addEventListener('input', () => {
   const hexColor = col.value
   const { r, g, b } = hexToRgb(hexColor)
@@ -23,6 +14,13 @@ col.addEventListener('input', () => {
   rgbColourIn.value = `rgb(${r}, ${g}, ${b})`
   hslColourIn.value = `hsl(${h}, ${s}%, ${l}%)`
 
+  if (theorySelect.value === 'com') {
+    const div = section.querySelector('div');
+    const computedCompHue = computeComplementary(h)
+    // changes the bgcolor of the div to the computed hsl colour
+    div.style.backgroundColor = `hsl(${computedCompHue}, ${s}%, ${l}%)`
+  }
+
 })
 
 theorySelect.addEventListener('input', (e) => {
@@ -30,17 +28,16 @@ theorySelect.addEventListener('input', (e) => {
     if (section.children.length === 2) {
       section.removeChild(section.lastElementChild)
     }
-    const div = section.querySelector('div');
-    // sets the complementary color of chosen color as div bg-color
-
-
   }
   else {
     appendDivs(createDiv(1))
+    // Fires off the event to change the bg color?
   }
 })
 
-
+function computeComplementary(hue) {
+  return (hue + 180) % 360
+}
 
 
 function createDiv(num) {
