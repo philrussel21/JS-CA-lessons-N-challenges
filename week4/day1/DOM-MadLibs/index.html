@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Dynamic Adjectives</title>
+	</head>
+	<body class="flex-col">
+		<p id="update">This is a <span id="dynamic">dynamic</span> string</p>
+		<form id="awesomeFormName" onSubmit="myFunc(event)">
+			<legend>Adjective generator</legend>
+			<input
+				type="text"
+				id="field1"
+				name="field1"
+				placeholder="insert text here"
+			/><br />
+			<input type="submit" value="Submit" />
+		</form>
+		<h2 id="words">Adjectives go here</h2>
+		<script src="./index.js"></script>
+	</body>
+</html>

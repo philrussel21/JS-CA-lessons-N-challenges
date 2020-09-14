@@ -1,0 +1,24 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+form {
+	border: 1px solid black;
+	width: 50vw;
+	text-align: center;
+}
+#update {
+	font-size: 2.5rem;
+}
+#words {
+	border: 1px solid black;
+	margin: 0 auto;
+	width: 50vw;
+	text-align: center;
+}
