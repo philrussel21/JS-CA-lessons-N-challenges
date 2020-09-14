@@ -1,0 +1,59 @@
+* {
+	box-sizing: border-box;
+}
+#cat-stuff {
+	height: 200px;
+	width: 1500px;
+	overflow: hidden;
+}
+#cat-bground {
+	height: 200px;
+	width: 100%;
+	position: absolute;
+	background-image: url('./images/background.jpg');
+}
+/* These are the buttons */
+#right,
+#jump,
+#left {
+	position: relative;
+	background-color: pink;
+	height: 2rem;
+	top: 145px;
+	width: 200px;
+	border-radius: 20px;
+	border: 1px solid black;
+	font-size: 1.5rem;
+}
+#cat-pic {
+	position: relative;
+	top: 50%;
+}
+.bounce {
+	position: absolute;
+	animation: jump 1.2s ease-out;
+}
+
+@keyframes jump {
+	0% {
+		transform: translate(-50%, -50%) scale(1.25, 0.75);
+	}
+	50% {
+		transform: translate(-50%, -150%) scale(1, 1);
+	}
+	55% {
+		transform: translate(-50%, -150%) rotate(15deg);
+	}
+	60% {
+		transform: translate(-50%, -150%) rotate(-15deg);
+	}
+	65% {
+		transform: translate(-50%, -150%) rotate(15deg);
+	}
+	70% {
+		transform: translate(-50%, -150%) rotate(-15deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1.25, 0.75);
+	}
+}
