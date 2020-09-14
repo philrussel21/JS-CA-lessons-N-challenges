@@ -28,7 +28,7 @@
 		>
 			<form
 				action="#"
-				class="container-fluid w-75 jumbotron text-center d-flex flex-column"
+				class="container-fluid w-25 jumbotron text-center d-flex flex-column"
 			>
 				<label for="theorySelect">Colour Theory</label>
 				<select name="theory" id="theorySelect">
@@ -36,7 +36,7 @@
 					<option value="com" selected>Complementary</option>
 				</select>
 
-				<h2>Starting Colour</h2>
+				<h2>Base Colour</h2>
 				<label for="hexColour">Hex Colour</label>
 				<input type="text" id="hexColour" readonly />
 				<label for="rgbColour">RGB Colour</label>
@@ -47,7 +47,9 @@
 			</form>
 		</main>
 		<section class="cont w-100 d-flex">
-			<div class="w-100 h-100"></div>
+			<div class="w-100 h-100" id="base"></div>
+			<div class="w-100 h-100" id="secDiv"></div>
+
 			<!-- <div class="w-100 h-100 bg-white"></div> -->
 
 			<!-- <div class="w-100 h-100 bg-secondary"></div>
@@ -60,3 +62,5 @@
 <!-- https://www.canva.com/colors/color-wheel/ -->
 <!-- 2 Analogous Colors, One +30 and One -30-->
 <!-- 1 Complementary -->
+<!-- User must be able to input via hex, rgb or hsl -->
+<!-- if analogous, base colour must be shown in the middle -->
