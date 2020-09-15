@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Wild Pokemons!</title>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+		<!-- Bootstrap CDN --->
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body class="container d-flex flex-column justify-content-center">
+		<!-- <div class="pokemonImage">
+			<img src="" alt="The image or sprite of the Pokemon you encountered!" />
+		</div>
+		<div class="pokemonName"></div>
+		<div class="pokemonType1"></div>
+		<div class="pokemonType2"></div> -->
+		<section class="d-flex justify-content-center mt-3">
+			<button id="poke-btn" class="btn btn-primary mx-auto">
+				Encounter a Pokemon!
+			</button>
+			<button id="poke-team" class="btn btn-success mx-auto">
+				Grab a Team
+			</button>
+		</section>
+		<section id="cont"></section>
+		<section id="my-team"></section>
+
+		<script>
+			function getRandomNumberForPokeAPI() {
+				// The "808" is just a safe maximum for how many Pokemon are currently in the API.
+				// When they add more Pokemon, that number should go up.
+				// Some newer Pokemon (numbers 808 and above) might be missing some data -
+				// if that's the case, just change this number back to 808 instead of 894.
+				let suitableNumber = Math.floor(Math.random() * 808);
+				return suitableNumber;
+
+				// You would then place this number in the PokeAPI url as per the API docs,
+				// using trusty ol' string interpolation.
+				// Like so:
+				// https://pokeapi.co/api/v2/pokemon/${getRandomNumberForPokeAPI()}
+			}
+
+			// Write your own JS after this line --------------------------------------
+			const btn = document.querySelector('#poke-btn');
+			const cont = document.querySelector('#cont');
+
+			// FETCH WAY
+			// btn.addEventListener('click', () => {
+			// 	const newH2 = document.createElement('h2');
+			// 	const newImg = document.createElement('img');
+			// 	const div = document.createElement('div');
+
+			// 	const randNum = getRandomNumberForPokeAPI();
+			// 	fetch(`https://pokeapi.co/api/v2/pokemon/${randNum}`).then((res) => {
+			// 		res.json().then((data) => {
+			// 			const pokeName = data.name;
+			// 			const pokeImg = data.sprites.front_default;
+			// 			const pokeTypes = data.types;
+
+			// 			const newUl = document.createElement('ul');
+			// 			newUl.textContent = 'Type:';
+
+			// 			for (let poketype of pokeTypes) {
+			// 				const {
+			// 					type: { name },
+			// 				} = poketype;
+			// 				const li = document.createElement('li');
+			// 				li.textContent = name;
+			// 				newUl.append(li);
+			// 			}
+
+			// 			newH2.textContent = pokeName;
+			// 			newImg.src = pokeImg;
+
+			// 			div.append(newH2);
+			// 			div.append(newImg);
+			// 			div.append(newUl);
+			// 			cont.append(div);
+			// 		});
+			// 	});
+			// });
+
+			// AXIOS WAY
+			btn.addEventListener('click', () => {
+				const newH2 = document.createElement('h2');
+				const newImg = document.createElement('img');
+				const div = document.createElement('div');
+
+				const randNum = getRandomNumberForPokeAPI();
+				axios
+					.get(`https://pokeapi.co/api/v2/pokemon/${randNum}`)
+					.then((res) => {
+						const { data } = res;
+
+						const pokeName = data.name;
+						const pokeImg = data.sprites.front_default;
+						const pokeTypes = data.types;
+
+						const newUl = document.createElement('ul');
+						newUl.textContent = 'Type:';
+
+						for (let poketype of pokeTypes) {
+							const {
+								type: { name },
+							} = poketype;
+							const li = document.createElement('li');
+							li.textContent = name;
+							newUl.append(li);
+						}
+
+						newH2.textContent = pokeName;
+						newImg.src = pokeImg;
+
+						const catchBtn = document.createElement('button');
+						catchBtn.textContent = 'Catch Pokemon!';
+						catchBtn.classList.add('btn', 'btn-info');
+						// catchBtn.classList.add('btn-info');
+						catchBtn.addEventListener('click', catchPokemon);
+
+						// div.append(newH2);
+						// div.append(newImg);
+						// div.append(newUl);
+						// div.append(catchBtn);
+						div.append(newH2, newImg, newUl, catchBtn);
+						cont.append(div);
+					});
+			});
+
+			// ASYNC - AWAIT syntax
+			// const btn = document.querySelector('#poke-btn');
+			// btn.addEventListener('click', () => {
+			// 	const randNum = getRandomNumberForPokeAPI();
+			// 	getPokemon(randNum);
+			// });
+
+			// async function getPokemon(pokeNum) {
+			// 	const res = await axios.get(
+			// 		`https://pokeapi.co/api/v2/pokemon/${pokeNum}`
+			// 	);
+			// 	const { data } = res;
+			// 	const pokeName = data.name;
+			// 	const pokeTypes = data.types;
+			// 	const pokeImg = data.sprites.front_default;
+
+			// 	const newH2 = document.createElement('h2');
+			// 	const newImg = document.createElement('img');
+			// 	const newUl = document.createElement('ul');
+			// 	newUl.textContent = 'Type:';
+
+			// 	for (let poketype of pokeTypes) {
+			// 		const {
+			// 			type: { name },
+			// 		} = poketype;
+			// 		const li = document.createElement('li');
+			// 		li.textContent = name;
+			// 		newUl.append(li);
+			// 	}
+
+			// 	newH2.textContent = pokeName;
+			// 	newImg.src = pokeImg;
+
+			// 	document.body.append(newH2);
+			// 	document.body.append(newImg);
+			// 	cont.append(newUl);
+			// }
+
+			// AXIOS WAY - 6 Pokemons to create Team
+			const teamBtn = document.querySelector('#poke-team');
+			const teamCont = document.querySelector('#my-team');
+			teamBtn.addEventListener('click', () => {
+				teamCont.innerHTML = '';
+				const teamHead = document.createElement('h1');
+				teamHead.textContent = 'My Pokemon Team';
+				teamCont.append(teamHead);
+				for (let i = 0; i < 6; i++) {
+					const newH2 = document.createElement('h2');
+					const newImg = document.createElement('img');
+					const div = document.createElement('div');
+					const randNum = getRandomNumberForPokeAPI();
+					axios
+						.get(`https://pokeapi.co/api/v2/pokemon/${randNum}`)
+						.then((res) => {
+							const { data } = res;
+
+							const pokeName = data.name;
+							const pokeImg = data.sprites.front_default;
+							const pokeTypes = data.types;
+
+							const newUl = document.createElement('ul');
+							newUl.textContent = 'Type:';
+
+							for (let poketype of pokeTypes) {
+								const {
+									type: { name },
+								} = poketype;
+								const li = document.createElement('li');
+								li.textContent = name;
+								newUl.append(li);
+							}
+
+							newH2.textContent = pokeName;
+							newImg.src = pokeImg;
+
+							const releasePoke = document.createElement('button');
+							releasePoke.textContent = 'Release Pokemon';
+							releasePoke.classList.add('btn', 'btn-danger');
+							// releasePoke.classList.add('btn-danger');
+							releasePoke.addEventListener('click', releasePokemon);
+
+							// div.append(newH2);
+							// div.append(newImg);
+							// div.append(newUl);
+							// div.append(releasePoke);
+							div.append(newH2, newImg, newUl, releasePoke);
+							teamCont.append(div);
+						});
+				}
+			});
+
+			function catchPokemon() {
+				const caughtPoke = this.parentNode;
+				caughtPoke.removeChild(caughtPoke.lastElementChild);
+
+				const releasePoke = document.createElement('button');
+				releasePoke.textContent = 'Release Pokemon';
+				releasePoke.classList.add('btn');
+				releasePoke.classList.add('btn-danger');
+				releasePoke.addEventListener('click', releasePokemon);
+				caughtPoke.append(releasePoke);
+
+				teamCont.append(caughtPoke);
+			}
+			function releasePokemon() {
+				const chosenPoke = this.parentNode;
+				teamCont.removeChild(chosenPoke);
+			}
+		</script>
+	</body>
+</html>
