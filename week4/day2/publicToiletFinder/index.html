@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>OZ Toilet Finder</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.2.0/papaparse.js"></script>
+	</head>
+
+	<body>
+		<!-- Do your HTML elements here -->
+		<form action="#">
+			<h1>Public Toiler Finder</h1>
+			<p>What postcode do you need a toilet in?</p>
+			<label for="postcode">PostCode:</label>
+			<input type="number" min="1000" max="9999" id="postcode" />
+			<input type="submit" value="Find Toilet" />
+			<hr />
+		</form>
+		<section id="cont"></section>
+
+		<script>
+			const cont = document.querySelector('#cont');
+			const form = document.querySelector('form');
+
+			const results = Papa.parse(
+				'https://data.gov.au/data/dataset/553b3049-2b8b-46a2-95e6-640d7986a8c1/resource/34076296-6692-4e30-b627-67b7c4eb1027/download/toiletmapexport_200702_111356.csv',
+				{
+					download: true,
+					header: true,
+					complete: function (results) {
+						// To see the data that a public toilet has in this API,
+						// make sure you uncomment this console.log line
+						// and check the browser console!
+						// console.log(typeof results.data[0].Postcode);
+						// do your JS code here
+						form.addEventListener('submit', (e) => {
+							e.preventDefault();
+							cont.innerHTML = '';
+							const postcode = form.elements.postcode.value;
+							const match = results.data.filter(
+								(toilet) => toilet.Postcode === postcode
+							);
+							if (match.length === 0) {
+								noResultsFound();
+							} else {
+								// creates a heading for the results
+								const h2 = document.createElement('h2');
+								h2.textContent = `Toilets found on postcode ${postcode}`;
+								cont.appendChild(h2);
+
+								for (let record of match) {
+									createElements(record);
+								}
+								form.elements.postcode.value = '';
+							}
+						});
+					},
+				}
+			);
+			function createElements({ Name, Address1, Town, State, Postcode }) {
+				const div = document.createElement('div');
+				const ul = document.createElement('ul');
+				const li = document.createElement('li');
+
+				ul.textContent = Name;
+				li.textContent = `${Address1}, ${Town} ${Postcode} ${State}`;
+
+				ul.appendChild(li);
+				div.appendChild(ul);
+				cont.appendChild(div);
+			}
+
+			function noResultsFound() {
+				const h3 = document.createElement('h3');
+				h3.textContent = 'Sorry, no toilets found in that postcode';
+				cont.appendChild(h3);
+			}
+		</script>
+	</body>
+</html>
