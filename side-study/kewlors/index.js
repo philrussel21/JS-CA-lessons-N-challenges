@@ -13,6 +13,7 @@ thirdDiv.setAttribute('id', 'thirdDiv')
 
 window.onload = function () {
   color.value = '#007FFF'
+  // Fires off the event to apply the colour theory on default
   changeBgColor()
 }
 
@@ -23,12 +24,13 @@ theorySelect.addEventListener('input', (e) => {
     if (section.children.length === 3) {
       section.removeChild(section.lastElementChild)
     }
+    // Fires off the event to apply the colour theory
     changeBgColor()
   }
   else {
     section.appendChild(thirdDiv)
     changeBgColor()
-    // Fires off the event to change the bg color?
+    // Fires off the event to apply the colour theory
   }
 })
 
