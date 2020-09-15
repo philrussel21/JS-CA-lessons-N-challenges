@@ -52,15 +52,17 @@ function changeBgColor() {
     // clears existing headings
     clearHeadings()
     // adds new heading to the baseColor div
-    baseDiv.appendChild(addsBaseHeading())
     shouldUseWhiteFont(baseDiv)
+    baseDiv.appendChild(addsBaseHeading())
 
+    // compputes the complementary colour of the chosen base colour
     const computedCompHue = computeComplementary(h)
     // changes the bgcolor of the div to the computed hsl colour
     secDiv.style.backgroundColor = `hsl(${computedCompHue}, ${s}%, ${l}%)`
     // adds heading to the secondary div
-    secDiv.appendChild(addsCompHeading())
     shouldUseWhiteFont(secDiv)
+    secDiv.appendChild(addsCompHeading())
+    appendColourInfo(secDiv)
 
   }
   // Analogous Theory
@@ -72,29 +74,63 @@ function changeBgColor() {
     // clears existing headings
     clearHeadings()
     // adds new heading to highlight the baseColour div
-    secDiv.appendChild(addsBaseHeading())
     shouldUseWhiteFont(secDiv)
+    secDiv.appendChild(addsBaseHeading())
 
     // computes the analogous values according to basecolour the assigns to appropriate divs
     const { first, second } = computeAnalogous(h)
 
     baseDiv.style.backgroundColor = `hsl(${first}, ${s}%, ${l}%)`
-    baseDiv.appendChild(addsAnHeading())
     shouldUseWhiteFont(baseDiv)
+    baseDiv.appendChild(addsAnHeading())
+    appendColourInfo(baseDiv)
+
 
 
     thirdDiv.style.backgroundColor = `hsl(${second}, ${s}%, ${l}%)`
-    thirdDiv.appendChild(addsAnHeading())
     shouldUseWhiteFont(thirdDiv)
+    thirdDiv.appendChild(addsAnHeading())
+    appendColourInfo(thirdDiv)
   }
 
+}
+
+function appendColourInfo(element) {
+  const div = document.createElement('div')
+
+  // element's rgb value
+  const [r, g, b] = extractRGBfromString(element)
+
+  // element's hex value added to the DOM
+  const hex = rgbToHex(r, g, b).toUpperCase()
+  const hexLabel = document.createElement('p')
+  const hexVal = document.createElement('p')
+  hexLabel.textContent = "Hex Colour"
+  hexVal.textContent = hex
+  div.append(hexLabel, hexVal)
+
+  // element's rgb value added to the DOM
+  const rgbLabel = document.createElement('p')
+  const rgbVal = document.createElement('p')
+  rgbLabel.textContent = "RGB Colour"
+  rgbVal.textContent = `rgb(${r}, ${g}, ${b})`
+  div.append(rgbLabel, rgbVal)
+
+  // element's hsl value
+  const { h, s, l } = rgb2hsl(r, g, b)
+  const hslLabel = document.createElement('p')
+  const hslVal = document.createElement('p')
+  hslLabel.textContent = "HSL Colour"
+  hslVal.textContent = `hsl(${h}, ${s}%, ${l}%)`
+  div.append(hslLabel, hslVal)
+
+  element.append(div)
 }
 
 // algo to find the optimum colour of heading to maximise contrast
 function shouldUseWhiteFont(element) {
   // element.style.backgroundColor returns a string in rgb format then r,g,b are extracted
-  const rgbArr = extractRGBfromString(element.style.backgroundColor)
-  const [, r, g, b] = rgbArr
+  const [r, g, b] = extractRGBfromString(element)
   const isWhite = (r * 0.299 + g * 0.587 + b * 0.114) < 186
   isWhite ? element.style.color = "white" : element.style.color = "#333333"
 }
@@ -123,12 +159,14 @@ function addsAnHeading() {
   return h2
 }
 
-// returns an array with rgb,r,g,b as values
-function extractRGBfromString(rgb) {
+// returns an array with the r,g,b values from an element
+function extractRGBfromString(element) {
+  const rgb = element.style.backgroundColor
   var matchColors = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
   var match = matchColors.exec(rgb);
-  return match
+  return match.slice(1)
 }
+
 
 
 // COLOR THEORIES ALGO
@@ -153,7 +191,11 @@ function hexToRgb(hex) {
 }
 
 function rgbToHex(r, g, b) {
-  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  // return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  return '#' + [parseInt(r), parseInt(g), parseInt(b)].map(x => {
+    const hex = x.toString(16)
+    return hex.length === 1 ? '0' + hex : hex
+  }).join('')
 }
 
 
