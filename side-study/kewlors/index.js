@@ -5,6 +5,8 @@
 const col = document.querySelector('#color');
 const theorySelect = document.querySelector('#theorySelect')
 const section = document.querySelector('.cont')
+const info = document.querySelector('svg')
+const modal = document.querySelector('#modal')
 const hexColourIn = document.querySelector('#hexColour')
 const rgbColourIn = document.querySelector('#rgbColour')
 const hslColourIn = document.querySelector('#hslColour')
@@ -21,6 +23,8 @@ window.onload = function () {
   changeTheory(theorySelect.value)
 }
 
+// LISTENERS
+
 col.addEventListener('input', () => {
   const theory = theorySelect.value
   changeBgColor(theory)
@@ -30,6 +34,15 @@ theorySelect.addEventListener('input', (e) => {
   const theory = e.target.value
   changeTheory(theory)
 })
+
+info.addEventListener('click', () => {
+  modal.classList.add('d-flex')
+  modal.addEventListener('click', () => {
+    modal.classList.remove('d-flex')
+  })
+
+})
+// FUNCTIONS
 
 function changeTheory(theory) {
   if (theory == 'com') {

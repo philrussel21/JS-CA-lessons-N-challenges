@@ -1,3 +1,6 @@
+body {
+	height: 100vh;
+}
 .cont {
 	height: 100vh;
 }
@@ -8,7 +11,18 @@
 	transform: translate(-50%, -50%);
 	transition: width linear 1s;
 }
-
+.my-modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+.modal-body p {
+	font-size: 1.2rem;
+}
+.hidden {
+	display: none;
+}
 input[color] {
 	height: 2em;
 }
@@ -30,6 +44,10 @@ input[color] {
 }
 .display-4 {
 	font-weight: 800;
+}
+.svg {
+	width: 1em;
+	cursor: pointer;
 }
 h1 {
 	background: green;
