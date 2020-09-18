@@ -8,7 +8,7 @@ const baseDiv = document.querySelector('#base')
 const secDiv = section.querySelector('#secDiv')
 
 const thirdDiv = document.createElement('div')
-thirdDiv.classList.add('w-100', 'h-100')
+thirdDiv.classList.add('w-100', 'h-100', 'd-flex', 'flex-column')
 thirdDiv.setAttribute('id', 'thirdDiv')
 
 window.onload = function () {
@@ -97,32 +97,39 @@ function changeBgColor() {
 
 function appendColourInfo(element) {
   const div = document.createElement('div')
-  div.classList.add('d-flex', 'flex-column', 'justify-content-center', 'info-div')
+  div.classList.add('d-flex', 'flex-column', 'justify-content-center', 'align-items-center', 'info-div')
 
   // element's rgb value
   const [r, g, b] = extractRGBfromString(element)
 
   // element's hex value added to the DOM
   const hex = rgbToHex(r, g, b).toUpperCase()
-  const hexLabel = document.createElement('p')
-  const hexVal = document.createElement('p')
+  const hexLabel = document.createElement('label')
+  const hexVal = document.createElement('input')
   hexLabel.textContent = "Hex Colour"
-  hexVal.textContent = hex
+  hexVal.value = hex
+  hexVal.readOnly = true;
+  hexVal.classList.add('form-control-lg', 'hex-output')
   div.append(hexLabel, hexVal)
 
   // element's rgb value added to the DOM
-  const rgbLabel = document.createElement('p')
-  const rgbVal = document.createElement('p')
+  const rgbLabel = document.createElement('label')
+  const rgbVal = document.createElement('input')
   rgbLabel.textContent = "RGB Colour"
-  rgbVal.textContent = `rgb(${r}, ${g}, ${b})`
+  rgbVal.value = `rgb(${r}, ${g}, ${b})`
+  rgbVal.readOnly = true;
+  rgbVal.classList.add('form-control-lg', 'rgb-output')
   div.append(rgbLabel, rgbVal)
 
   // element's hsl value
   const { h, s, l } = rgb2hsl(r, g, b)
-  const hslLabel = document.createElement('p')
-  const hslVal = document.createElement('p')
+  const hslLabel = document.createElement('label')
+  const hslVal = document.createElement('input')
   hslLabel.textContent = "HSL Colour"
-  hslVal.textContent = `hsl(${h}, ${s}%, ${l}%)`
+  hslVal.value = `hsl(${h}, ${s}%, ${l}%)`
+  hslVal.readOnly = true;
+  hslVal.classList.add('form-control-lg', 'hsl-output')
+
   div.append(hslLabel, hslVal)
 
   element.append(div)
