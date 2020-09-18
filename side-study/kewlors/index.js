@@ -97,6 +97,7 @@ function changeBgColor() {
 
 function appendColourInfo(element) {
   const div = document.createElement('div')
+  div.classList.add('d-flex', 'flex-column', 'justify-content-center', 'info-div')
 
   // element's rgb value
   const [r, g, b] = extractRGBfromString(element)

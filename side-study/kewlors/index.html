@@ -23,6 +23,10 @@
 			input[color] {
 				height: 2em;
 			}
+
+			.info-div {
+				flex-grow: 1;
+			}
 			@media only screen and (max-width: 900px) {
 				.position-absolute {
 					width: 200px;
@@ -56,11 +60,18 @@
 				<label for="hslColour">HSL Colour</label>
 				<input type="text" id="hslColour" class="form-control" />
 			</div>
-			<input type="color" id="color" class="w-50 mx-auto border-0 p-0" />
+			<div class="form-group">
+				<label for="color">Colour Picker</label>
+				<input
+					type="color"
+					id="color"
+					class="d-block w-50 mx-auto border-0 p-0"
+				/>
+			</div>
 		</form>
 		<section class="cont w-100 d-flex">
-			<div class="w-100 h-100" id="base"></div>
-			<div class="w-100 h-100" id="secDiv"></div>
+			<div class="w-100 h-100 d-flex flex-column" id="base"></div>
+			<div class="w-100 h-100 d-flex flex-column" id="secDiv"></div>
 		</section>
 		<footer></footer>
 		<script src="index.js"></script>
