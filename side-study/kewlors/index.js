@@ -1,6 +1,7 @@
 // TODO
 // Adds listeners to every input element in the form
 // consider wrapping the outputs on seperate divs like from the form? (.form-control)
+// on mobile and tablet, outputs are put in a modal and would be triggered when button "info" is clicked
 const col = document.querySelector('#color');
 const theorySelect = document.querySelector('#theorySelect')
 const section = document.querySelector('.cont')

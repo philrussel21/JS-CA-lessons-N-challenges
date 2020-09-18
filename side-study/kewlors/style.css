@@ -4,7 +4,7 @@
 .position-absolute {
 	top: 50%;
 	left: 50%;
-	width: 300px;
+	width: 280px;
 	transform: translate(-50%, -50%);
 	transition: width linear 1s;
 }
@@ -25,6 +25,64 @@ input[color] {
 .hsl-output {
 	width: 12em;
 }
+.jumbotron {
+	padding: 2rem;
+}
+.display-4 {
+	font-weight: 800;
+}
+h1 {
+	background: green;
+	background: -webkit-linear-gradient(
+		left,
+		orange,
+		yellow,
+		green,
+		cyan,
+		blue,
+		violet
+	);
+	background: -o-linear-gradient(
+		right,
+		orange,
+		yellow,
+		green,
+		cyan,
+		blue,
+		violet
+	);
+	background: -moz-linear-gradient(
+		to right,
+		red,
+		orange,
+		yellow,
+		cyan,
+		blue,
+		violet
+	);
+	background: linear-gradient(
+		to right,
+		red,
+		orange,
+		yellow,
+		cyan,
+		blue,
+		violet
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+img {
+	width: 32px;
+}
+a {
+	width: 32px;
+}
+label {
+	font-size: 1.2rem;
+	font-weight: 400;
+}
+
 @media only screen and (max-width: 900px) {
 	.position-absolute {
 		width: 200px;
