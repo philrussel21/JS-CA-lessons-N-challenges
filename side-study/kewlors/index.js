@@ -1,3 +1,6 @@
+// TODO
+// Adds listeners to every input element in the form
+// consider wrapping the outputs on seperate divs like from the form? (.form-control)
 const col = document.querySelector('#color');
 const theorySelect = document.querySelector('#theorySelect')
 const section = document.querySelector('.cont')
