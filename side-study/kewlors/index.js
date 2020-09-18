@@ -20,7 +20,10 @@ window.onload = function () {
   changeTheory(theorySelect.value)
 }
 
-col.addEventListener('input', changeBgColor)
+col.addEventListener('input', () => {
+  const theory = theorySelect.value
+  changeBgColor(theory)
+})
 
 theorySelect.addEventListener('input', (e) => {
   const theory = e.target.value
