@@ -144,18 +144,21 @@ function clearHeadings() {
 function addsBaseHeading() {
   const h2 = document.createElement('h2')
   h2.textContent = "Base Colour"
+  h2.classList.add('pt-3')
   return h2
 }
 
 function addsCompHeading() {
   const h2 = document.createElement('h2')
   h2.textContent = "Complementary Colour"
+  h2.classList.add('pt-3')
   return h2
 }
 
 function addsAnHeading() {
   const h2 = document.createElement('h2')
   h2.textContent = "Analogous Colour"
+  h2.classList.add('pt-3')
   return h2
 }
 

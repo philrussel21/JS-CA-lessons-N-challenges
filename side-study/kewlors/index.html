@@ -12,50 +12,37 @@
 			.cont {
 				height: 100vh;
 			}
-			.position-relative {
-				/* z-index: -1; */
-			}
 			.position-absolute {
-				top: 0;
-				left: 0;
-				height: 100vh;
+				top: 50%;
+				left: 50%;
+				width: 300px;
+				transform: translate(-50%, -50%);
 			}
 		</style>
 	</head>
-	<!-- set up/ think of a predetermined size of the form and remove main and make form the absolute element. -->
-	<!-- put margin atuo left - top 0 afterwards -->
 	<body class="position-relative text-center">
-		<main
-			class="position-absolute d-flex justify-content-center align-items-center w-100"
+		<form
+			action="#"
+			class="position-absolute container-fluid jumbotron text-center d-flex flex-column"
 		>
-			<form
-				action="#"
-				class="container-fluid w-25 jumbotron text-center d-flex flex-column"
-			>
-				<label for="theorySelect">Colour Theory</label>
-				<select name="theory" id="theorySelect">
-					<option value="an">Analogous</option>
-					<option value="com" selected>Complementary</option>
-				</select>
+			<label for="theorySelect">Colour Theory</label>
+			<select name="theory" id="theorySelect">
+				<option value="an">Analogous</option>
+				<option value="com" selected>Complementary</option>
+			</select>
 
-				<h2>Base Colour</h2>
-				<label for="hexColour">Hex Colour</label>
-				<input type="text" id="hexColour" readonly />
-				<label for="rgbColour">RGB Colour</label>
-				<input type="text" id="rgbColour" readonly />
-				<label for="hslColour">HSL Colour</label>
-				<input type="text" id="hslColour" readonly />
-				<input type="color" id="color" />
-			</form>
-		</main>
+			<h2>Base Colour</h2>
+			<label for="hexColour">Hex Colour</label>
+			<input type="text" id="hexColour" readonly />
+			<label for="rgbColour">RGB Colour</label>
+			<input type="text" id="rgbColour" readonly />
+			<label for="hslColour">HSL Colour</label>
+			<input type="text" id="hslColour" readonly />
+			<input type="color" id="color" />
+		</form>
 		<section class="cont w-100 d-flex">
 			<div class="w-100 h-100" id="base"></div>
 			<div class="w-100 h-100" id="secDiv"></div>
-
-			<!-- <div class="w-100 h-100 bg-white"></div> -->
-
-			<!-- <div class="w-100 h-100 bg-secondary"></div>
-			<div class="w-100 h-100 bg-warning"></div> -->
 		</section>
 		<footer></footer>
 		<script src="index.js"></script>
