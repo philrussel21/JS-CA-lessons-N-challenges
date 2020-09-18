@@ -14,27 +14,32 @@ thirdDiv.setAttribute('id', 'thirdDiv')
 window.onload = function () {
   color.value = '#007FFF'
   // Fires off the event to apply the colour theory on default
-  changeBgColor()
+  changeTheory(theorySelect.value)
 }
 
 col.addEventListener('input', changeBgColor)
 
 theorySelect.addEventListener('input', (e) => {
-  if (e.target.value == 'com') {
+  const theory = e.target.value
+  changeTheory(theory)
+})
+
+function changeTheory(theory) {
+  if (theory == 'com') {
     if (section.children.length === 3) {
       section.removeChild(section.lastElementChild)
     }
-    // Fires off the event to apply the colour theory
-    changeBgColor()
+    // Fires off the event to apply the complement colour theory
+    changeBgColor(theory)
   }
   else {
     section.appendChild(thirdDiv)
-    changeBgColor()
-    // Fires off the event to apply the colour theory
+    // Fires off the event to apply the analogous colour theory
+    changeBgColor(theory)
   }
-})
+}
 
-function changeBgColor() {
+function changeBgColor(theory) {
   // converts to different color definitions
   const hexColor = col.value
   const { r, g, b } = hexToRgb(hexColor)
@@ -46,7 +51,7 @@ function changeBgColor() {
   hslColourIn.value = `hsl(${h}, ${s}%, ${l}%)`
 
   // if Complementary Theory
-  if (theorySelect.value === 'com') {
+  if (theory === 'com') {
     baseDiv.style.backgroundColor = hexColor;
 
     // clears existing headings
