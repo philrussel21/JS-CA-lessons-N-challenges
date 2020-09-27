@@ -18,11 +18,45 @@ const server = http.createServer((req, res) => {
   // res.write('<p>Greetings from Mars!</p>')
   // res.end()
 
-  // set header content type to text/html to send html files
+  // send html files
+  // set header content type to text/html to 
+  // res.setHeader('Content-Type', 'text/html')
+
+  // // read file using fs module
+  // fs.readFile('./views/index.html', (err, data) => {
+  //   if (err) {
+  //     console.log(err)
+  //     res.write('<h1>Sorry, something went wrong!<h1>')
+  //     res.end()
+  //   }
+  //   else {
+  //     // res.write(data)
+  //     // if only using write() once, the argument can be passed to the end() method and would still do the trick.
+  //     res.end(data)
+  //   }
+  // })
+
+
+  // basic routing
+  // set header content type to text/html
   res.setHeader('Content-Type', 'text/html')
 
+  let path = './views/'
+
+  switch (req.url) {
+    case '/':
+      path += 'index.html'
+      break
+    case '/about':
+      path += 'about.html'
+      break
+    default:
+      path += '404.html'
+
+  }
+
   // read file using fs module
-  fs.readFile('./views/index.html', (err, data) => {
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err)
       res.write('<h1>Sorry, something went wrong!<h1>')
@@ -30,7 +64,7 @@ const server = http.createServer((req, res) => {
     }
     else {
       // res.write(data)
-      // if only using write() once, the argument can be passed to the end() method and wouls still do the trick.
+      // if only using write() once, the argument can be passed to the end() method and would still do the trick.
       res.end(data)
     }
   })
