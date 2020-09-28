@@ -1,0 +1,12 @@
+<h1>Your Pokemon Team</h1>
+
+{{#each pokeTeam}}
+<div>
+  <h2>{{this.name}}</h2>
+  <ul>Types</ul>
+  {{#each this.type}}
+    <li>{{this}}</li>
+  {{/each}}
+  <img src="{{this.sprite}}" alt="Pokemon Sprite">
+</div>
+{{/each}}
