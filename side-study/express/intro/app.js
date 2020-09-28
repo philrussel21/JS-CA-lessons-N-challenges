@@ -18,8 +18,18 @@ app.get('/', (req, res) => {
   // Instead of writing the html, send the html file to instead
   // res.sendFile('./views/index.html', { root: __dirname })
 
+  const blogs = [
+
+    { title: 'Blog 1', snippet: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, obcaecati!' },
+
+    { title: 'Blog 2', snippet: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, obcaecati!' },
+
+    { title: 'Blog 3', snippet: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi, obcaecati!' }
+  ]
+
+
   // renders the index page found in views directory with the help of ejs
-  res.render('index')
+  res.render('index', { blogs })
 
 })
 
@@ -27,7 +37,7 @@ app.get('/about', (req, res) => {
   // res.send('<h1>About Page<h1>')
 
   // res.sendFile('./views/about.html', { root: __dirname })
-  res.render('about')
+  res.render('about', { title: 'Ninjas' })
 })
 
 app.get('/blogs/create', (req, res) => {
