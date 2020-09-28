@@ -9,6 +9,23 @@ app.set('view engine', 'ejs');
 // listen for requests
 const server = app.listen(3000, () => console.log('Listening to Port 3000'))
 
+// Middlewares - runs every time in between request and response depending
+// on the position in the code.
+
+// Middleware from express to make public directory to make static files
+// accessible by the app, and by the public
+app.use(express.static('public'))
+
+// Middleware
+app.use((req, res, next) => {
+  console.log("New Request Made:")
+  console.log('host:', req.hostname)
+  console.log('path:', req.path)
+  console.log('method', req.method)
+  console.log('Time:', Date.now())
+  next()
+})
+
 app.get('/', (req, res) => {
 
   // infers the type of content to the browser so no need to setHeader the content
