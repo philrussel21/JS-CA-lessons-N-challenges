@@ -1,7 +1,7 @@
 const { render } = require('ejs');
 const express = require('express')
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
+const blogRoutes = require('./routes/blogRoutes');
 
 // express app
 const app = express()
@@ -78,62 +78,8 @@ app.get('/about-me', (req, res) => {
   res.redirect('/about')
 })
 
-
-app.get('/blogs/create', (req, res) => {
-  res.render('create')
-})
-
-app.get('/blogs', async (req, res) => {
-  try {
-    // finds all blogs then .sort() sorts them according to the provided field, -1 for newest to oldest
-    // createdAt is the auto generated field created by mongodb when given the timestamp on the Schema
-    const blogs = await Blog.find().sort({ createdAt: -1 })
-    res.render('index', { blogs })
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-// Create new blog
-app.post('/blogs', (req, res) => {
-  // const { title, snippet, body } = req.body
-
-  // const newBlog = new Blog({
-  //   title, snippet, body 
-  // }) or
-
-  const newBlog = new Blog(req.body)
-
-  newBlog.save()
-    .then(resolve => {
-      res.redirect('/')
-    }).catch(err => console.log(err))
-})
-
-// Show/find certain blog
-app.get('/blogs/:id', async (req, res) => {
-  try {
-    const blogId = req.params.id
-    const blog = await Blog.findById(blogId)
-    res.render('show', { blog })
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-app.delete('/blogs/:id', (req, res) => {
-  const blogId = req.params.id
-
-  Blog.findByIdAndDelete(blogId)
-    .then(result => {
-      // responds back to the FrontEnd with JSON file that has the route where to
-      // redirect after deleting a document.
-      res.json({
-        redirect: '/blogs'
-      })
-    })
-    .catch(err => console.log(err))
-})
+// links to blogRoutes routes
+app.use('/blogs', blogRoutes)
 
 // 404 Error Page
 // .use is a middleware
