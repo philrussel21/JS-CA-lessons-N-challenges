@@ -121,6 +121,20 @@ app.get('/blogs/:id', async (req, res) => {
   }
 })
 
+app.delete('/blogs/:id', (req, res) => {
+  const blogId = req.params.id
+
+  Blog.findByIdAndDelete(blogId)
+    .then(result => {
+      // responds back to the FrontEnd with JSON file that has the route where to
+      // redirect after deleting a document.
+      res.json({
+        redirect: '/blogs'
+      })
+    })
+    .catch(err => console.log(err))
+})
+
 // 404 Error Page
 // .use is a middleware
 // This file runs from top to bottom, so it checks for any matching routes above

@@ -5,14 +5,36 @@
 	<body>
 		<%- include('./partials/nav.ejs') %>
 
-		<div class="details content">
+		<div class="show content">
 			<h2><%= blog.title %></h2>
 			<div class="content">
 				<p><%= blog.body %></p>
 			</div>
-			<a data-doc="<%= blog._id %> " class="delete">delete</a>
+			<!-- creates a custom attribute doc and assigns the blog's id to it -->
+			<a data-doc="<%= blog._id %> " class="delete">DELETE</a>
 		</div>
 
 		<%- include('./partials/footer.ejs') %>
+
+		<script>
+			const trashCan = document.querySelector('.delete');
+			trashCan.addEventListener('click', (e) => {
+				// access the id through the custom attribute using dataset property
+				// assigns it to an endpoint as the whole route
+				const endpoint = `/blogs/${trashCan.dataset.doc}`;
+
+				// makes a request to the backend with method DELETE
+				fetch(endpoint, {
+					method: 'DELETE',
+				})
+					// once the request is processed, converts the response to JSON
+					.then((response) => response.json())
+					// expects to have data that has a route, in this case {redirect: /blogs}
+					// assigns it to the window properties location.href to redirect the page
+					// from the front end
+					.then((data) => (window.location.href = data.redirect))
+					.catch((err) => console.log(err));
+			});
+		</script>
 	</body>
 </html>
