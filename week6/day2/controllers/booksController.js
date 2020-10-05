@@ -15,7 +15,7 @@ const create = (req, res) => {
   const dBLastId = books[books.length - 1].id
   newBook['id'] = dBLastId + 1
   books.push(newBook)
-  res.redirect('/books')
+  res.send(books)
 }
 
 const update = (req, res) => {
@@ -27,7 +27,7 @@ const update = (req, res) => {
   book.author = updatedBook.author
   book.movie = updatedBook.movie
 
-  res.redirect(`/books/${bookId}`)
+  res.send(book)
 }
 
 const destroy = (req, res) => {
@@ -36,7 +36,7 @@ const destroy = (req, res) => {
   const bookIdx = books.indexOf(book)
   books.splice(bookIdx, 1)
 
-  res.redirect('/books')
+  res.send(books)
 }
 
 
