@@ -11,7 +11,7 @@ app.use(express.json())
 // app.use(express.urlencoded())
 
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Your app is running on port ${PORT}, QUICK!! go catch it!!`)
 })
 
@@ -20,3 +20,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/books', booksRouter)
+
+module.exports = {
+  server,
+  app
+}
