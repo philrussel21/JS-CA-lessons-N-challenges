@@ -1,0 +1,1 @@
+const { one, two, three, plus, minus, divide, multiply } = require('./index')
