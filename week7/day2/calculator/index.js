@@ -54,70 +54,138 @@
 // EASIER MODE?
 
 // Selectors
-const input = document.querySelector('#input')
-const nums = document.querySelectorAll('.nums')
-const cancel = document.querySelector('#cancel')
-const ops = document.querySelectorAll('.ops')
-const plus = document.querySelector('#plus')
-const minus = document.querySelector('#minus')
-const multiply = document.querySelector('#multiply')
-const divide = document.querySelector('#divide')
-const equals = document.querySelector('#equals')
-const answer = document.querySelector('#answer')
-var num1;
-var num2;
-var op;
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.querySelector('#input')
+  const nums = document.querySelectorAll('.nums')
+  const cancel = document.querySelector('#cancel')
+  const ops = document.querySelectorAll('.ops')
+  const plus = document.querySelector('#plus')
+  const minus = document.querySelector('#minus')
+  const multiply = document.querySelector('#multiply')
+  const divide = document.querySelector('#divide')
+  const equals = document.querySelector('#equals')
+  const answer = document.querySelector('#answer')
+  var num1;
+  var num2;
+  var op;
 
-// Listeners
-nums.forEach((num) => {
-  num.addEventListener('click', (e) => {
-    input.value += e.target.textContent
+  // Listeners
+  nums.forEach((num) => {
+    num.addEventListener('click', (e) => {
+      input.value += e.target.textContent
+    })
   })
-})
 
-cancel.addEventListener('click', () => {
-  num1 = null
-  num2 = null
-  op = null
-  answer.value = ""
-})
-
-ops.forEach((op) => {
-  op.addEventListener('click', () => {
-    if (num1) {
-      num2 = parseInt(input.value)
-      input.value = ""
-    } else {
-      num1 = parseInt(input.value)
-      input.value = ""
-    }
+  cancel.addEventListener('click', () => {
+    num1 = null
+    num2 = null
+    op = null
+    answer.value = ""
   })
+
+  ops.forEach((op) => {
+    op.addEventListener('click', () => {
+      if (num1) {
+        num2 = parseInt(input.value)
+        input.value = ""
+      } else {
+        num1 = parseInt(input.value)
+        input.value = ""
+      }
+    })
+  })
+
+  plus.addEventListener('click', () => {
+    op = addition
+  })
+
+  minus.addEventListener('click', () => {
+    op = subtraction
+  })
+
+  multiply.addEventListener('click', () => {
+    op = multiplication
+  })
+
+  divide.addEventListener('click', () => {
+    op = division
+  })
+
+  equals.addEventListener('click', () => {
+    answer.value = ""
+    const result = performOp(num1, op, num2)
+    answer.value = result
+    // num1 = result
+    num1 = null
+  }
+  )
+
 })
 
-plus.addEventListener('click', () => {
-  op = addition
-})
+// const input = document.querySelector('#input')
+// const nums = document.querySelectorAll('.nums')
+// const cancel = document.querySelector('#cancel')
+// const ops = document.querySelectorAll('.ops')
+// const plus = document.querySelector('#plus')
+// const minus = document.querySelector('#minus')
+// const multiply = document.querySelector('#multiply')
+// const divide = document.querySelector('#divide')
+// const equals = document.querySelector('#equals')
+// const answer = document.querySelector('#answer')
+// var num1;
+// var num2;
+// var op;
 
-minus.addEventListener('click', () => {
-  op = subtraction
-})
+// // Listeners
+// nums.forEach((num) => {
+//   num.addEventListener('click', (e) => {
+//     input.value += e.target.textContent
+//   })
+// })
 
-multiply.addEventListener('click', () => {
-  op = multiplication
-})
+// cancel.addEventListener('click', () => {
+//   num1 = null
+//   num2 = null
+//   op = null
+//   answer.value = ""
+// })
 
-divide.addEventListener('click', () => {
-  op = division
-})
+// ops.forEach((op) => {
+//   op.addEventListener('click', () => {
+//     if (num1) {
+//       num2 = parseInt(input.value)
+//       input.value = ""
+//     } else {
+//       num1 = parseInt(input.value)
+//       input.value = ""
+//     }
+//   })
+// })
 
-equals.addEventListener('click', () => {
-  answer.value = ""
-  const result = performOp(num1, op, num2)
-  answer.value = result
-  // num1 = result
-  num1 = null
-}
-)
+// plus.addEventListener('click', () => {
+//   op = addition
+// })
+
+// minus.addEventListener('click', () => {
+//   op = subtraction
+// })
+
+// multiply.addEventListener('click', () => {
+//   op = multiplication
+// })
+
+// divide.addEventListener('click', () => {
+//   op = division
+// })
+
+// equals.addEventListener('click', () => {
+//   answer.value = ""
+//   const result = performOp(num1, op, num2)
+//   answer.value = result
+//   // num1 = result
+//   num1 = null
+// }
+// )
 
 
 // FUNCTIONS
