@@ -43,6 +43,7 @@ const blog_show = async (req, res) => {
     res.render('show', { blog })
   } catch (error) {
     console.log(error)
+    res.status(404).render('404')
   }
 }
 
