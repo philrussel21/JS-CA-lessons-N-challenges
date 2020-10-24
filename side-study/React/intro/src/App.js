@@ -1,34 +1,35 @@
+import React from "react";
+// Imports render method from the ReactDOM package
+import { render } from "react-dom";
+import Pet from "./Pet";
 
-// the props are destructured for easier access
-const Pet = ({ name, animal, breed }) => {
-  // create Element accepts three params, 
-  // first being the html tag accepted as a string, or another component
-  // second is the tag's attributes (id, class, style)
-  // third is the child. could be another component or just plain string.
-  // in this example, the div is created and three children can be made passed as an array,
-  // they don't necessarily needed to be passed as an array since every arg passed after the second would be treated
-  // as a child element.
-  return React.createElement("div", {}, [
-    React.createElement('h1', {}, name),
-    React.createElement('h2', {}, animal),
-    React.createElement('h2', {}, breed)
-  ])
-}
+// to move a component from one file to another (creating a module), highlight the function and hit move to a new file,
+// imports and export would be handled by VSCODE.
 
 // ann App component
 const App = () => {
-  return React.createElement(
-    'div',
-    {},
-    [React.createElement('h1', {}, 'Adopt Me!'),
-    // when a component is passed, the attributes passed becomes props(properties) which is then passed to the function component as an object
-    React.createElement(Pet, { name: "Brownie", animal: "Dog", breed: 'Golden Retriever' }),
-    React.createElement(Pet, { name: "Bantay", animal: "Dog", breed: 'Husky' }),
-    React.createElement(Pet, { name: "Tagpi", animal: "Dog", breed: 'Huskal' })
-    ]);
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   [React.createElement('h1', {}, 'Adopt Me!'),
+  //   // when a component is passed, the attributes passed becomes props(properties) which is then passed to the function component as an object
+  //   React.createElement(Pet, { name: "Brownie", animal: "Dog", breed: 'Golden Retriever' }),
+  //   React.createElement(Pet, { name: "Bantay", animal: "Dog", breed: 'Husky' }),
+  //   React.createElement(Pet, { name: "Tagpi", animal: "Dog", breed: 'Huskal' })
+  //   ]);
+
+  // attributes passed to Components would be their props(properties) as key-value pairs ie {name: Brownie ...}
+  return (
+    <div>
+      <h1 id="something-important">Adopt Me!</h1>
+      <Pet name="Brownie" animal="Dog" breed="Golden Retriever" />
+      <Pet name="Bantay" animal="Dog" breed="Husky" />
+      <Pet name="Tagpi" animal="Dog" breed="Huskal" />
+    </div>
+  )
 };
 
-ReactDOM.render(
-  React.createElement(App),
+render(
+  <App />,
   document.getElementById('root')
 );
