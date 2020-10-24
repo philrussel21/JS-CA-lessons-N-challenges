@@ -2,6 +2,7 @@ import React from "react";
 // Imports render method from the ReactDOM package
 import { render } from "react-dom";
 import Pet from "./Pet";
+import SearchParams from './SearchParams'
 
 // to move a component from one file to another (creating a module), highlight the function and hit move to a new file,
 // imports and export would be handled by VSCODE.
@@ -22,13 +23,15 @@ const App = () => {
   return (
     <div>
       <h1 id="something-important">Adopt Me!</h1>
-      <Pet name="Brownie" animal="Dog" breed="Golden Retriever" />
+      {/* <Pet name="Brownie" animal="Dog" breed="Golden Retriever" />
       <Pet name="Bantay" animal="Dog" breed="Husky" />
-      <Pet name="Tagpi" animal="Dog" breed="Huskal" />
+      <Pet name="Tagpi" animal="Dog" breed="Huskal" /> */}
+      <SearchParams />
     </div>
   )
 };
 
+// renders rerun everytime an event happen in the browser
 render(
   <App />,
   document.getElementById('root')
