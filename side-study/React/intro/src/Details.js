@@ -2,6 +2,7 @@ import React from 'react';
 import pet from '@frontendmasters/pet';
 import Carousel from './Carousel';
 import ErrorBoundary from './ErrorBoundary';
+import ThemeContext from './ThemeContext';
 
 // old way of creating Components in React - using class constructor. In this way, Hooks (useState, useEffect) is not accessible.
 // Error boundaries are only allowed using the class components.
@@ -47,7 +48,12 @@ class Details extends React.Component {
 				<div>
 					<h1>{name}</h1>
 					<h2>{`${animal} - ${breed} - ${location}`}</h2>
-					<button>Adopt {name}</button>
+					{/* using context on class components */}
+					<ThemeContext.Consumer>
+						{([theme]) => (
+							<button style={{ backgroundColor: theme }}>Adopt {name}</button>
+						)}
+					</ThemeContext.Consumer>
 					<p>{description}</p>
 				</div>
 			</div>

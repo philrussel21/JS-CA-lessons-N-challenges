@@ -24,7 +24,7 @@ const SearchParams = () => {
 	const [pets, setPets] = useState([]);
 	// using Context on hooks, useContext.
 	// the provider has to be a parent of the component where the context is being used, see App.js for the structure
-	const [theme] = useContext(ThemeContext);
+	const [theme, setTheme] = useContext(ThemeContext);
 
 	async function requestPets() {
 		const { animals } = await pet.animals({
@@ -116,7 +116,19 @@ const SearchParams = () => {
 				{/* components from customHooks */}
 				<AnimalDropdown />
 				<BreedDropdown />
-
+				<label htmlFor="theme">
+					Theme
+					<select
+						value={theme}
+						onChange={(e) => setTheme(e.target.value)}
+						onBlur={(e) => setTheme(e.target.value)}
+					>
+						<option value="peru">Peru</option>
+						<option value="darkblue">Dark Blue</option>
+						<option value="mediumorchid">Medium Orchid</option>
+						<option value="chartreuse">Chartreuse</option>
+					</select>
+				</label>
 				{/* using Context on hooks */}
 				<button style={{ backgroundColor: theme }}>Submit</button>
 			</form>

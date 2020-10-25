@@ -13,7 +13,7 @@ import ThemeContext from './ThemeContext';
 // ann App component
 const App = () => {
 
-  const themeHook = useState('darkblue');
+  const themeHook = useState('peru');
 
 
   // return React.createElement(
