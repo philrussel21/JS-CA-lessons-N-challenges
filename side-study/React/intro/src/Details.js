@@ -1,8 +1,10 @@
 import React from 'react';
 import pet from '@frontendmasters/pet';
 import Carousel from './Carousel';
+import ErrorBoundary from './ErrorBoundary';
 
 // old way of creating Components in React - using class constructor. In this way, Hooks (useState, useEffect) is not accessible.
+// Error boundaries are only allowed using the class components.
 class Details extends React.Component {
 	// before babel configuration
 	// constructor(props) {
@@ -53,4 +55,11 @@ class Details extends React.Component {
 	}
 }
 
-export default Details;
+export default function DetailsWithErrorBoundary(props) {
+	return (
+		<ErrorBoundary>
+			{/* {...props} would spread the props to Details component */}
+			<Details {...props} />
+		</ErrorBoundary>
+	);
+}
