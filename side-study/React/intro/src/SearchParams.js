@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ANIMALS } from '@frontendmasters/pet';
+import React, { useState, useEffect } from 'react';
+import pet, { ANIMALS } from '@frontendmasters/pet';
 import useDropdown from './useDropdown';
 
 // variables and methods that start with 'use' are called hooks. Stateful logics are done using React hooks.
@@ -9,16 +9,31 @@ const SearchParams = () => {
 	// and the second being the function to use for updating the state. In the example below, useState('stringHere') is used to
 	// set the default value of location. To change the value of the variable, setLocation has to be called and passed the replacement
 	// value as can be seen down further.
-	const [location, setLocation] = useState('Brisbane, QLD');
+	const [location, setLocation] = useState('Seattle, WA');
 
 	// replaced with customHooks created named useDropdown
 	// const [animal, setAnimal] = useState('dog');
 	// const [breed, setBreed] = useState('husky');
 
+	const [breeds, setBreeds] = useState([]);
 	// from customHook useDropdown
 	const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS);
-	const [breed, BreedDropdown] = useDropdown('Breed', '', []);
-	// const [breeds, setBreeds] = useState([]);
+	const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds);
+
+	// useEffect runs after the render finishes.
+	// useEffect has to be passed with dependencies because of its costly nature behaviour of running after re-renders.
+	// useEffect will now only run only if there's changes in the second argument passed array as dependencies, like so:
+	useEffect(() => {
+		setBreeds([]);
+		setBreed('');
+
+		pet.breeds(animal).then(({ breeds }) => {
+			const breedNames = breeds.map(({ name }) => name);
+			setBreeds(breedNames);
+		}, console.error);
+	}, [animal, setBreed, setBreeds]);
+	// !IMPORTANT: to make an effect only run once, pass an empty array [] as its dependency. If on the contrary would like it
+	// to run after every change/re-render, don't pass a second argument.
 
 	// since class and for are a reserved keywords in JS, React has a work around it by calling them
 	// className and htmlFor respectively, like so:
