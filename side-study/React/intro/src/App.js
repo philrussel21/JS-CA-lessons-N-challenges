@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 // Imports render method from the ReactDOM package
 import { render } from "react-dom";
 import { Link, Router } from '@reach/router';
 import Pet from "./Pet";
 import SearchParams from './SearchParams';
 import Details from './Details';
+import ThemeContext from './ThemeContext';
 
 // to move a component from one file to another (creating a module), highlight the function and hit move to a new file,
 // imports and export would be handled by VSCODE.
 
 // ann App component
 const App = () => {
+
+  const themeHook = useState('darkblue');
+
+
   // return React.createElement(
   //   'div',
   //   {},
@@ -23,20 +28,22 @@ const App = () => {
 
   // attributes passed to Components would be their props(properties) as key-value pairs ie {name: Brownie ...}
   return (
-    <div>
-      <header>
-        {/* Link is a component from reach/router that can accept the 'to' attribute where the user would be redirected when clicked*/}
-        <Link to="/">
-          Adopt Me!
+    <ThemeContext.Provider value={themeHook}>
+      <div>
+        <header>
+          {/* Link is a component from reach/router that can accept the 'to' attribute where the user would be redirected when clicked*/}
+          <Link to="/">
+            Adopt Me!
         </Link>
-      </header>
-      {/* Router is a component from reach/router that sets up routes within a single page app. Think of it as a condition rendering
+        </header>
+        {/* Router is a component from reach/router that sets up routes within a single page app. Think of it as a condition rendering
       where when one 'path' is visited, the corresponding component would be rendered, like so: */}
-      <Router>
-        <SearchParams path="/" />
-        <Details path="/details/:id" />
-      </Router>
-    </div>
+        <Router>
+          <SearchParams path="/" />
+          <Details path="/details/:id" />
+        </Router>
+      </div>
+    </ThemeContext.Provider>
   );
 };
 

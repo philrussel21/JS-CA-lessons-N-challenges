@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import pet, { ANIMALS } from '@frontendmasters/pet';
 import useDropdown from './useDropdown';
 import Results from './Results';
+import ThemeContext from './ThemeContext';
 
 // variables and methods that start with 'use' are called hooks. Stateful logics are done using React hooks.
 //!IMPORTANT: Hooks should never be put in conditionals and loops to not mess with the React logic sequence
@@ -21,6 +22,9 @@ const SearchParams = () => {
 	const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS);
 	const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds);
 	const [pets, setPets] = useState([]);
+	// using Context on hooks, useContext.
+	// the provider has to be a parent of the component where the context is being used, see App.js for the structure
+	const [theme] = useContext(ThemeContext);
 
 	async function requestPets() {
 		const { animals } = await pet.animals({
@@ -109,11 +113,12 @@ const SearchParams = () => {
 					</select>
 				</label> */}
 
-				{/* customHooks */}
+				{/* components from customHooks */}
 				<AnimalDropdown />
 				<BreedDropdown />
 
-				<button>Submit</button>
+				{/* using Context on hooks */}
+				<button style={{ backgroundColor: theme }}>Submit</button>
 			</form>
 			<Results pets={pets} />
 		</div>
