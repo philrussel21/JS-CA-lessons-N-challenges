@@ -1,9 +1,9 @@
 function tulipValue(totalDays) {
-  // Your code here
   let value = 1;
   let counter = 1;
   let combo = 0;
   for (let days = 0; days !== totalDays; days++) {
+    // first day guard clause
     if (!combo) {
       combo++;
       continue;
