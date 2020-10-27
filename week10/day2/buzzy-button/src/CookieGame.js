@@ -6,6 +6,7 @@ class CookieGame extends React.Component {
 
 		this.state = {
 			score: +props.score,
+			id: props.id,
 		};
 	}
 
@@ -18,10 +19,11 @@ class CookieGame extends React.Component {
 	};
 
 	render() {
-		const { score } = this.state;
+		const { score, id } = this.state;
 		return (
 			<div>
 				<h2>Current Score: {score}</h2>
+				<h3>ID: {id}</h3>
 				<button onClick={this.plusOne}>Add</button>
 				<button onClick={this.minusOne}>Minus</button>
 			</div>
