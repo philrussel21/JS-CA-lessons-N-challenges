@@ -1,39 +1,115 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Link, Router } from '@reach/router';
-import Button from './Button';
+import { Link, Router, navigate } from '@reach/router';
+import Home from './Home';
+import BuzzButton from './BuzzButton';
 import CookieGame from './CookieGame';
 import { HappyMessage } from './HappyMessage';
 import YellingGreeter from './YellingGreeter';
+import Auth from './Auth';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import LaptopChromebook from '@material-ui/icons/LaptopChromebook';
+import Login from './Login';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	title: {
+		flexGrow: 1,
+	},
+}));
+
+
 
 const App = () => {
+	const [user, setUser] = useState(null);
+	const [isLoggedIn, setLogIn] = useState(false);
+
+	const classes = useStyles();
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const email = e.target[0].value;
+		const password = e.target[1].value;
+		setUser({
+			email: email,
+			password: password
+		});
+		setLogIn(true);
+		navigate('/index');
+
+	};
+
+	const handleLogout = () => {
+		setUser({
+			email: null,
+			password: null
+		});
+		setLogIn(false);
+		navigate('/index');
+	};
+
+
+
 	return (
-		<div>
-			<h1> MASHUP</h1>
+		<div className={classes.root}>
+			<AppBar position="static">
+				<Toolbar>
+					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+						<Link to="/index">
+
+							<LaptopChromebook />
+						</Link>
+
+					</IconButton>
+					<Typography variant="h6" className={classes.title}>
+						Mashup
+    			</Typography>
+					{isLoggedIn &&
+						<Button color="inherit">
+							{user.email}
+						</Button>
+					}
+					<Auth isLoggedIn={isLoggedIn} logoutCB={handleLogout} user={user} />
+
+				</Toolbar>
+			</AppBar>
+
 			<Link to="/happymessage">
-				Happy Message
+				<Button variant="contained" >Happy Message</Button>
+
 			</Link>
-			<br />
 			<Link to="/button">
-				Buzzy Button
+				<Button variant="contained">Buzzy Button</Button>
+
 			</Link>
-			<br />
 
 			<Link to="/yell">
-				Yelling Greeter
+				<Button variant="contained">Yelling Greeter</Button>
+
 			</Link>
-			<br />
 
 			<Link to="/cookie/UserIdNumbahOne">
-				Cookie Game
+				<Button variant="contained">Cookie Game</Button>
+
 			</Link>
-			<br />
 
 			<Router>
+				<Home path="/index" />
 				<HappyMessage path="/happymessage" />
-				<Button path="/button" />
+				<BuzzButton path="/button" />
 				<YellingGreeter message="WHAT THE FFFF" path="/yell" />
 				<CookieGame score="5" path="/cookie/:id" />
+				<Login path="/login" eventHandler={handleSubmit} />
 			</Router>
 		</div>
 	);

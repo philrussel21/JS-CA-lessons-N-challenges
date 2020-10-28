@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Button extends Component {
+class BuzzButton extends Component {
 	// constructor(props) {
 	// 	super(props);
 	// }
@@ -16,4 +16,4 @@ class Button extends Component {
 	}
 }
 
-export default Button;
+export default BuzzButton;
