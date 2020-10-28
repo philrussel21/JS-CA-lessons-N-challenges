@@ -14,7 +14,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import LaptopChromebook from '@material-ui/icons/LaptopChromebook';
+import Paper from '@material-ui/core/Paper';
 import Login from './Login';
+import MovieList from './MovieList';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -100,17 +102,24 @@ const App = () => {
 
 			<Link to="/cookie/UserIdNumbahOne">
 				<Button variant="contained">Cookie Game</Button>
-
 			</Link>
 
-			<Router>
-				<Home path="/index" />
-				<HappyMessage path="/happymessage" />
-				<BuzzButton path="/button" />
-				<YellingGreeter message="WHAT THE FFFF" path="/yell" />
-				<CookieGame score="5" path="/cookie/:id" />
-				<Login path="/login" eventHandler={handleSubmit} />
-			</Router>
+			<Link to="/movies">
+				<Button variant="contained">Movie List</Button>
+			</Link>
+
+			<Paper elevation={3}>
+
+				<Router>
+					<Home path="/index" />
+					<HappyMessage path="/happymessage" />
+					<BuzzButton path="/button" />
+					<YellingGreeter message="WHAT THE FFFF" path="/yell" />
+					<CookieGame score="5" path="/cookie/:id" />
+					<Login path="/login" eventHandler={handleSubmit} />
+					<MovieList path="movies" />
+				</Router>
+			</Paper>
 		</div>
 	);
 };
