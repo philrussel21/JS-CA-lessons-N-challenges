@@ -17,6 +17,7 @@ import LaptopChromebook from '@material-ui/icons/LaptopChromebook';
 import Paper from '@material-ui/core/Paper';
 import Login from './Login';
 import MovieList from './MovieList';
+import DynamicForm from './DynamicForm';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -108,6 +109,10 @@ const App = () => {
 				<Button variant="contained">Movie List</Button>
 			</Link>
 
+			<Link to="/dynamic-form">
+				<Button variant="contained">Dynamic Form</Button>
+			</Link>
+
 			<Paper elevation={3}>
 
 				<Router>
@@ -117,7 +122,8 @@ const App = () => {
 					<YellingGreeter message="WHAT THE FFFF" path="/yell" />
 					<CookieGame score="5" path="/cookie/:id" />
 					<Login path="/login" eventHandler={handleSubmit} />
-					<MovieList path="movies" />
+					<MovieList path="/movies" />
+					<DynamicForm path="/dynamic-form" />
 				</Router>
 			</Paper>
 		</div>
