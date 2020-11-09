@@ -18,6 +18,7 @@ import Paper from '@material-ui/core/Paper';
 import Login from './Login';
 import MovieList from './MovieList';
 import DynamicForm from './DynamicForm';
+import ToDoList from './components/ToDoList';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -113,6 +114,10 @@ const App = () => {
 				<Button variant="contained">Dynamic Form</Button>
 			</Link>
 
+			<Link to="/todo-list">
+				<Button variant="contained">Todo-List</Button>
+			</Link>
+
 			<Paper elevation={3}>
 
 				<Router>
@@ -124,6 +129,7 @@ const App = () => {
 					<Login path="/login" eventHandler={handleSubmit} />
 					<MovieList path="/movies" />
 					<DynamicForm path="/dynamic-form" />
+					<ToDoList path="/todo-list" user={user} />
 				</Router>
 			</Paper>
 		</div>
