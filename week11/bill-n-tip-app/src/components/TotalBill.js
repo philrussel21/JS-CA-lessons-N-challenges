@@ -3,10 +3,7 @@ import React from 'react';
 export default function TotalBill({ bill, tip }) {
 	function totalBill(initBill, tip) {
 		const tipRate = tip / 100;
-		console.log({ tipRate });
 		const tipAmt = +initBill * tipRate;
-		console.log({ tipAmt });
-		console.log({ initBill });
 		return +initBill + tipAmt;
 	}
 
