@@ -22,6 +22,8 @@ import ToDoList from './components/ToDoList';
 import Example from './components/Example';
 import PokeHome from './PokeComponents/PokeHome';
 import PokeData from './PokeComponents/PokeData';
+import DarkModeToggle from './components/DarkModeToggle';
+import './index.css';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -80,15 +82,17 @@ const App = () => {
 
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>
+
 						Mashup
-    			</Typography>
+
+					</Typography>
 					{isLoggedIn &&
 						<Button color="inherit">
 							{user.email}
 						</Button>
 					}
 					<Auth isLoggedIn={isLoggedIn} logoutCB={handleLogout} user={user} />
-
+					<DarkModeToggle />
 				</Toolbar>
 			</AppBar>
 
