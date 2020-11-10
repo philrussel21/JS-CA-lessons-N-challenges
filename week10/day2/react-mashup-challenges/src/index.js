@@ -19,6 +19,7 @@ import Login from './Login';
 import MovieList from './MovieList';
 import DynamicForm from './DynamicForm';
 import ToDoList from './components/ToDoList';
+import Example from './components/Example';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -118,6 +119,10 @@ const App = () => {
 				<Button variant="contained">Todo-List</Button>
 			</Link>
 
+			<Link to="/example">
+				<Button variant="contained">Example</Button>
+			</Link>
+
 			<Paper elevation={3}>
 
 				<Router>
@@ -130,6 +135,7 @@ const App = () => {
 					<MovieList path="/movies" />
 					<DynamicForm path="/dynamic-form" />
 					<ToDoList path="/todo-list" user={user} />
+					<Example path="/example" />
 				</Router>
 			</Paper>
 		</div>
