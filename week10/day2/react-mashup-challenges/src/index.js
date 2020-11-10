@@ -20,6 +20,8 @@ import MovieList from './MovieList';
 import DynamicForm from './DynamicForm';
 import ToDoList from './components/ToDoList';
 import Example from './components/Example';
+import PokeHome from './PokeComponents/PokeHome';
+import PokeData from './PokeComponents/PokeData';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -62,6 +64,7 @@ const App = () => {
 		setLogIn(false);
 		navigate('/index');
 	};
+
 
 
 
@@ -122,6 +125,9 @@ const App = () => {
 			<Link to="/example">
 				<Button variant="contained">Example</Button>
 			</Link>
+			<Link to="/pokemon">
+				<Button variant="contained" color="secondary">Pokemon</Button>
+			</Link>
 
 			<Paper elevation={3}>
 
@@ -136,6 +142,8 @@ const App = () => {
 					<DynamicForm path="/dynamic-form" />
 					<ToDoList path="/todo-list" user={user} />
 					<Example path="/example" />
+					<PokeHome path="/pokemon" />
+					<PokeData path="/pokemon/:pokename" />
 				</Router>
 			</Paper>
 		</div>
