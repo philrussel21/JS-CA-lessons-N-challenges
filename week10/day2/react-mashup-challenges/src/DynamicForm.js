@@ -12,12 +12,11 @@ class DynamicForm extends React.Component {
 		});
 	};
 
-	handleAdd = () => {};
+	handleAdd = () => { };
 
 	render() {
 		const { inputs } = this.state;
-		const inputFields = [];
-		for (let i = 0; i < inputs; i++) {}
+		for (let i = 0; i < inputs; i++) { }
 		return (
 			<div>
 				<h1>Dynamic Form</h1>
