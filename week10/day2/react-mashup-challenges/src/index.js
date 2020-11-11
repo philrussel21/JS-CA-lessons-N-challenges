@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Link, Router, navigate } from '@reach/router';
 import Home from './Home';
@@ -24,6 +24,7 @@ import PokeHome from './PokeComponents/PokeHome';
 import PokeData from './PokeComponents/PokeData';
 import DarkModeToggle from './components/DarkModeToggle';
 import './index.css';
+import jokes from './data/jokes.json';
 import Tweetter from './components/Tweetter';
 import Twoots from './components/TwetterComponents/Twoots';
 import Twoot from './components/TwetterComponents/Twoot';
@@ -47,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
 	const [user, setUser] = useState(null);
 	const [isLoggedIn, setLogIn] = useState(false);
+	const [allJokes, setJokes] = useState(null);
+
 
 	const classes = useStyles();
 
@@ -73,7 +76,13 @@ const App = () => {
 	};
 
 
+	const getJokefromId = (id) => {
+		return allJokes.find((j) => j.id === +id);
+	};
 
+	useEffect(() => {
+		setJokes(jokes);
+	}, []);
 
 	return (
 		<div className={classes.root}>
@@ -156,11 +165,11 @@ const App = () => {
 					<Example path="/example" />
 					<PokeHome path="/pokemon" />
 					<PokeData path="/pokemon/:pokename" />
-					<Tweetter path="/tweetter">
-						<Twoots path="/" />
-						<Twoot path="/:id" />
-						<AddTwoot path="new" />
-						<EditTwoot path="edit/:id" />
+					<Tweetter path="/tweetter" getJokefromId={getJokefromId}>
+						<Twoots path="/" allJokes={allJokes} getJokefromId={getJokefromId} />
+						<Twoot path="/:id" singJoke={null} allJokes={allJokes} getJokefromId={getJokefromId} />
+						<AddTwoot path="/new" />
+						<EditTwoot path="/edit/:id" />
 					</Tweetter>
 				</Router>
 			</Paper>

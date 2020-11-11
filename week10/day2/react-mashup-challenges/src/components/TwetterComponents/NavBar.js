@@ -6,8 +6,6 @@ const NavBar = () => {
     <div>
       <Link to="/tweetter/">Home</Link>
       <Link to="/tweetter/new">Add Twoot</Link>
-      <Link to="/tweetter/edit/testTwoot">Edit Twoot</Link>
-      <Link to="/tweetter/testTwoot">Show Twoot</Link>
 
 
     </div>

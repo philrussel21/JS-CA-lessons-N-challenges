@@ -1,9 +1,8 @@
 [
 	{
-		"category": "Pun",
-		"type": "twopart",
-		"setup": "What do Japanese cannibals eat?",
-		"delivery": "Raw men.",
+		"category": "Programming",
+		"type": "single",
+		"joke": "\"We messed up the keming again guys.\"",
 		"flags": {
 			"nsfw": false,
 			"religious": false,
@@ -11,13 +10,13 @@
 			"racist": false,
 			"sexist": false
 		},
-		"id": 80,
+		"id": 20,
 		"lang": "en"
 	},
 	{
 		"category": "Programming",
 		"type": "single",
-		"joke": "Java is like Alzheimer's, it starts off slow, but eventually, your memory is gone.",
+		"joke": "A guy walks into a bar and asks for 1.4 root beers.\nThe bartender says \"I'll have to charge you extra, that's a root beer float\".\nThe guy says \"In that case, better make it a double.\"",
 		"flags": {
 			"nsfw": false,
 			"religious": false,
@@ -25,14 +24,13 @@
 			"racist": false,
 			"sexist": false
 		},
-		"id": 27,
+		"id": 2,
 		"lang": "en"
 	},
 	{
-		"category": "Christmas",
-		"type": "twopart",
-		"setup": "Why does Santa go down the chimney?",
-		"delivery": "Because it soots him!",
+		"category": "Programming",
+		"type": "single",
+		"joke": "The generation of random numbers is too important to be left to chance.",
 		"flags": {
 			"nsfw": false,
 			"religious": false,
@@ -40,13 +38,55 @@
 			"racist": false,
 			"sexist": false
 		},
-		"id": 256,
+		"id": 39,
+		"lang": "en"
+	},
+	{
+		"category": "Programming",
+		"type": "single",
+		"joke": "A man is smoking a cigarette and blowing smoke rings into the air. His girlfriend becomes irritated with the smoke and says, \"Can't you see the warning on the cigarette pack? Smoking is hazardous to your health!\" to which the man replies, \"I am a programmer.  We don't worry about warnings; we only worry about errors.\"",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 38,
+		"lang": "en"
+	},
+	{
+		"category": "Miscellaneous",
+		"type": "single",
+		"joke": "A neutron walks into a bar and asks for a price on a drink.\nThe barkeeper says: \"For you... no charge!\"",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 74,
+		"lang": "en"
+	},
+	{
+		"category": "Programming",
+		"type": "single",
+		"joke": "Being a self-taught developer is almost the same as being a cut neck chicken because you have no sense of direction in the beginning.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 186,
 		"lang": "en"
 	},
 	{
 		"category": "Dark",
 		"type": "single",
-		"joke": "My little daughter came to me all excited, saying \"Daddy! Daddy! Guess how old I'll be in June!\"\n\"Oh I don't know princess, why don't you tell me?\" I said. She gave me a huge smile and held up four fingers.\nIt's now three hours later, police have joined in and she still won't say where she got them.",
+		"joke": "My grandfather says I'm too reliant on technology.\nI called him a hypocrite and unplugged his life support.",
 		"flags": {
 			"nsfw": false,
 			"religious": false,
@@ -54,14 +94,27 @@
 			"racist": false,
 			"sexist": false
 		},
-		"id": 167,
+		"id": 180,
+		"lang": "en"
+	},
+	{
+		"category": "Dark",
+		"type": "single",
+		"joke": "My ex had an accident. I told the paramedics the wrong blood type for her. She'll finally experience what rejection is really like.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 154,
 		"lang": "en"
 	},
 	{
 		"category": "Pun",
-		"type": "twopart",
-		"setup": "A grocery store cashier asked if I would like my milk in a bag.",
-		"delivery": "I told her \"No, thanks. The carton works fine\".",
+		"type": "single",
+		"joke": "Two fish in a tank. One turns to the other and says, \"Do you know how to drive this thing?\"",
 		"flags": {
 			"nsfw": false,
 			"religious": false,
@@ -69,29 +122,13 @@
 			"racist": false,
 			"sexist": false
 		},
-		"id": 173,
-		"lang": "en"
-	},
-	{
-		"category": "Miscellaneous",
-		"type": "twopart",
-		"setup": "What's the difference between a feminist and a grenade?",
-		"delivery": "The grenade actually accomplishes something when it triggers.",
-		"flags": {
-			"nsfw": false,
-			"religious": false,
-			"political": false,
-			"racist": false,
-			"sexist": false
-		},
-		"id": 144,
+		"id": 187,
 		"lang": "en"
 	},
 	{
 		"category": "Pun",
-		"type": "twopart",
-		"setup": "Did you hear about the cheese factory that exploded in France?",
-		"delivery": "There was nothing but de brie.",
+		"type": "single",
+		"joke": "Oysters hate to give away their pearls because they are shellfish.",
 		"flags": {
 			"nsfw": false,
 			"religious": false,
@@ -99,52 +136,7 @@
 			"racist": false,
 			"sexist": false
 		},
-		"id": 66,
-		"lang": "en"
-	},
-	{
-		"category": "Miscellaneous",
-		"type": "twopart",
-		"setup": "How much did your chimney cost?",
-		"delivery": "Nothing, it was on the house.",
-		"flags": {
-			"nsfw": false,
-			"religious": false,
-			"political": false,
-			"racist": false,
-			"sexist": false
-		},
-		"id": 234,
-		"lang": "en"
-	},
-	{
-		"category": "Miscellaneous",
-		"type": "twopart",
-		"setup": "How do construction workers party?",
-		"delivery": "They raise the roof.",
-		"flags": {
-			"nsfw": false,
-			"religious": false,
-			"political": false,
-			"racist": false,
-			"sexist": false
-		},
-		"id": 220,
-		"lang": "en"
-	},
-	{
-		"category": "Pun",
-		"type": "twopart",
-		"setup": "I asked my wife if I was the only one she's been with.",
-		"delivery": "She said, \"Yes, the others were at least sevens or eights.\"",
-		"flags": {
-			"nsfw": false,
-			"religious": false,
-			"political": false,
-			"racist": false,
-			"sexist": false
-		},
-		"id": 59,
+		"id": 91,
 		"lang": "en"
 	}
 ]
