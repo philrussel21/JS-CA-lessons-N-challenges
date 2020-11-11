@@ -1,0 +1,150 @@
+[
+	{
+		"category": "Pun",
+		"type": "twopart",
+		"setup": "What do Japanese cannibals eat?",
+		"delivery": "Raw men.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 80,
+		"lang": "en"
+	},
+	{
+		"category": "Programming",
+		"type": "single",
+		"joke": "Java is like Alzheimer's, it starts off slow, but eventually, your memory is gone.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 27,
+		"lang": "en"
+	},
+	{
+		"category": "Christmas",
+		"type": "twopart",
+		"setup": "Why does Santa go down the chimney?",
+		"delivery": "Because it soots him!",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 256,
+		"lang": "en"
+	},
+	{
+		"category": "Dark",
+		"type": "single",
+		"joke": "My little daughter came to me all excited, saying \"Daddy! Daddy! Guess how old I'll be in June!\"\n\"Oh I don't know princess, why don't you tell me?\" I said. She gave me a huge smile and held up four fingers.\nIt's now three hours later, police have joined in and she still won't say where she got them.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 167,
+		"lang": "en"
+	},
+	{
+		"category": "Pun",
+		"type": "twopart",
+		"setup": "A grocery store cashier asked if I would like my milk in a bag.",
+		"delivery": "I told her \"No, thanks. The carton works fine\".",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 173,
+		"lang": "en"
+	},
+	{
+		"category": "Miscellaneous",
+		"type": "twopart",
+		"setup": "What's the difference between a feminist and a grenade?",
+		"delivery": "The grenade actually accomplishes something when it triggers.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 144,
+		"lang": "en"
+	},
+	{
+		"category": "Pun",
+		"type": "twopart",
+		"setup": "Did you hear about the cheese factory that exploded in France?",
+		"delivery": "There was nothing but de brie.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 66,
+		"lang": "en"
+	},
+	{
+		"category": "Miscellaneous",
+		"type": "twopart",
+		"setup": "How much did your chimney cost?",
+		"delivery": "Nothing, it was on the house.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 234,
+		"lang": "en"
+	},
+	{
+		"category": "Miscellaneous",
+		"type": "twopart",
+		"setup": "How do construction workers party?",
+		"delivery": "They raise the roof.",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 220,
+		"lang": "en"
+	},
+	{
+		"category": "Pun",
+		"type": "twopart",
+		"setup": "I asked my wife if I was the only one she's been with.",
+		"delivery": "She said, \"Yes, the others were at least sevens or eights.\"",
+		"flags": {
+			"nsfw": false,
+			"religious": false,
+			"political": false,
+			"racist": false,
+			"sexist": false
+		},
+		"id": 59,
+		"lang": "en"
+	}
+]

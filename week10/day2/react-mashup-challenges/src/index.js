@@ -24,6 +24,11 @@ import PokeHome from './PokeComponents/PokeHome';
 import PokeData from './PokeComponents/PokeData';
 import DarkModeToggle from './components/DarkModeToggle';
 import './index.css';
+import Tweetter from './components/Tweetter';
+import Twoots from './components/TwetterComponents/Twoots';
+import Twoot from './components/TwetterComponents/Twoot';
+import AddTwoot from './components/TwetterComponents/AddTwoot';
+import EditTwoot from './components/TwetterComponents/EditTwoot';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -132,6 +137,9 @@ const App = () => {
 			<Link to="/pokemon">
 				<Button variant="contained" color="secondary">Pokemon</Button>
 			</Link>
+			<Link to="/tweetter">
+				<Button variant="contained" color="primary">Tweetter</Button>
+			</Link>
 
 			<Paper elevation={3}>
 
@@ -148,6 +156,12 @@ const App = () => {
 					<Example path="/example" />
 					<PokeHome path="/pokemon" />
 					<PokeData path="/pokemon/:pokename" />
+					<Tweetter path="/tweetter">
+						<Twoots path="/" />
+						<Twoot path="/:id" />
+						<AddTwoot path="new" />
+						<EditTwoot path="edit/:id" />
+					</Tweetter>
 				</Router>
 			</Paper>
 		</div>
