@@ -1,11 +1,17 @@
-import React from 'react'
+import React from 'react';
+import BookList from './components/BookList';
+import Navbar from './components/Navbar';
+import BookContextProvider from './contexts/BookContext';
 
 const App = () => {
   return (
-    <div >
-          The basic empty template
+    <div className="App">
+      <BookContextProvider>
+        <Navbar />
+        <BookList />
+      </BookContextProvider>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
