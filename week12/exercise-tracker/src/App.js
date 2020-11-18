@@ -1,11 +1,15 @@
-import React from 'react'
+import React from 'react';
+import ExerciseList from './components/ExerciseList';
+import Navbar from './components/Navbar';
+import ExerciseContextProvider from './contexts/ExerciseContext';
 
 const App = () => {
   return (
-    <div >
-          The basic empty template
-    </div>
-  )
-}
+    <ExerciseContextProvider>
+      <Navbar />
+      <ExerciseList />
+    </ExerciseContextProvider>
+  );
+};
 
-export default App
+export default App;

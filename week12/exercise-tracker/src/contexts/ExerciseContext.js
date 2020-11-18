@@ -4,7 +4,10 @@ import { exerciseReducer } from '../reducers/exerciseReducer';
 export const ExerciseContext = createContext();
 
 const ExerciseContextProvider = ({ children }) => {
-  const [exercises, dispatch] = useReducer(exerciseReducer, []);
+  const initialState = [
+    { name: "Jogging", duration: 45 }
+  ];
+  const [exercises, dispatch] = useReducer(exerciseReducer, initialState);
   return (
     <ExerciseContext.Provider value={{ exercises, dispatch }}>
       {children}
