@@ -7,7 +7,7 @@ const ExerciseList = () => {
   return (
     <div>
       {exercises
-        ? (exercises.map(exercise => <ExerciseDetails exercise={exercise} />))
+        ? (exercises.map(exercise => <ExerciseDetails exercise={exercise} key={exercise.id} />))
         : (<h2>No exercises yet.</h2>)}
     </div>
   );

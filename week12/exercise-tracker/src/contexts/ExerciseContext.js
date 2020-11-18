@@ -5,7 +5,7 @@ export const ExerciseContext = createContext();
 
 const ExerciseContextProvider = ({ children }) => {
   const initialState = [
-    { name: "Jogging", duration: 45 }
+    { name: "Jogging", duration: 45, id: 1 }
   ];
   const [exercises, dispatch] = useReducer(exerciseReducer, initialState);
   return (
