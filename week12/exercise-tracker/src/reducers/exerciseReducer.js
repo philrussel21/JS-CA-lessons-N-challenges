@@ -26,7 +26,7 @@ export const exerciseReducer = (state, action) => {
     // expecting an exercise object inside action
     case ACTIONS.UPDATE_EXERCISE: {
       const allOtherExercises = state.filter(exercise => exercise.id !== action.exercise.id);
-      return [allOtherExercises, action.exercise];
+      return [...allOtherExercises, action.exercise];
     }
     default: {
       return state;
